@@ -14,15 +14,73 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="280dp">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
+                android:background="@drawable/bg_bottom_round"
                 android:src="@drawable/banner2">
             </ImageView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.5"
+                android:background="@drawable/bg_top"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:maxWidth="260dp"
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="260dp"
+                        android:gravity="center"
+                        android:text="Seja Bem Vindo ao Educa móvel"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@android:color/white"
+                        android:textSize="23sp" />
+
+
+                    <TextView
+                        android:layout_width="180dp"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:text="Começar"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@android:color/white"
+                        android:foreground="@drawable/btn_bg"
+                        />
+
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
         </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="15dp"
+            app:cardCornerRadius="10dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            >
+
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:orientation="horizontal"
