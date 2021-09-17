@@ -4,23 +4,18 @@ import java.io.Serializable;
 
 
 public class Exhibitor implements Serializable {
-    private String uid, name, img,contact ,location, email, password, video, description, qrcode;
-    private long rating;
-    private long count;
+    private String uid, name, img,contact ,location, email, video, description;
 
-    public Exhibitor(String uid, String name, String img, String contact, String location, String email, String password, String video, String description, String qrcode, long rating, long count) {
+
+    public Exhibitor(String uid, String name, String img, String contact, String location, String email, String video, String description) {
         this.uid = uid;
         this.name = name;
         this.img = img;
         this.contact = contact;
         this.location = location;
         this.email = email;
-        this.password = password;
         this.video = video;
         this.description = description;
-        this.qrcode = qrcode;
-        this.rating = rating;
-        this.count = count;
     }
 
     public Exhibitor() {
@@ -74,14 +69,6 @@ public class Exhibitor implements Serializable {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getVideo() {
         return video;
     }
@@ -98,27 +85,4 @@ public class Exhibitor implements Serializable {
         this.description = description;
     }
 
-    public String getQrcode() {
-        return qrcode;
-    }
-
-    public void setQrcode(String qrcode) {
-        this.qrcode = qrcode;
-    }
-
-    public long getRating() {
-        return rating;
-    }
-
-    public void setRating(long rating) {
-        this.rating = rating;
-    }
-
-    public long getCount() {
-        return count;
-    }
-
-    public void setCount(long count) {
-        this.count = count;
-    }
 }

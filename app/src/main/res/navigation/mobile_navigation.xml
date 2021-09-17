@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="educa.movel.com.ui.dashboard.DashboardFragment"
+        android:name="educa.movel.com.ui.expo.ExpoFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_expo" />
 
     <fragment
         android:id="@+id/navigation_notifications"

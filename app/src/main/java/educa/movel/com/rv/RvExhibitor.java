@@ -1,6 +1,7 @@
 package educa.movel.com.rv;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,11 +14,15 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import educa.movel.com.R;
 import educa.movel.com.model.Exhibitor;
+import educa.movel.com.ui.ExhibitorActivity;
+import educa.movel.com.utils.Utils;
 
 
 public class RvExhibitor extends RecyclerView.Adapter<RvExhibitor.MyViewHoder> {
@@ -39,7 +44,7 @@ public class RvExhibitor extends RecyclerView.Adapter<RvExhibitor.MyViewHoder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHoder holder, final int position) {
+    public void onBindViewHolder(@NonNull final MyViewHoder holder, @SuppressLint("RecyclerView") final int position) {
         holder.tvName.setText(Utils.getCutStr(mData.get(position).getName(), 50));
         String img = mData.get(position).getImg();
         if (!img.isEmpty()) {
