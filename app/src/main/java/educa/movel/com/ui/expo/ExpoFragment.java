@@ -68,7 +68,7 @@ public class ExpoFragment extends Fragment {
 
         for (int i = 0; i < 10; i++) {
             exhibitorList.add(new Exhibitor("1", "Google Glass",
-                    "", "84365568", "Mocambique, Maputo","agostinho@gmail.com",
+                    "https://firebasestorage.googleapis.com/v0/b/igepe-6785f.appspot.com/o/exhibitor%2F66b8b93a-f7c7-4601-b9b6-7a901eb91fb1?alt=media&token=e7f57190-eed2-4ec0-86aa-0bf5393e5413", "84365568", "Mocambique, Maputo","agostinho@gmail.com",
                     "", "ss"));
         }
 

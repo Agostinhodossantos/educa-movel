@@ -47,13 +47,13 @@ public class RvExhibitor extends RecyclerView.Adapter<RvExhibitor.MyViewHoder> {
     public void onBindViewHolder(@NonNull final MyViewHoder holder, @SuppressLint("RecyclerView") final int position) {
         holder.tvName.setText(Utils.getCutStr(mData.get(position).getName(), 50));
         String img = mData.get(position).getImg();
-        if (!img.isEmpty()) {
-            Picasso.get().load(mData.get(position).getImg()).into(holder.imgBackground);
-            Picasso.get().load(mData.get(position).getImg()).into(holder.imgProfile);
-        } else {
-            Picasso.get().load(Utils.emptyImage).into(holder.imgBackground);
-            Picasso.get().load(Utils.emptyImage).into(holder.imgProfile);
-        }
+//        if (!img.isEmpty()) {
+//            Picasso.get().load(mData.get(position).getImg()).into(holder.imgBackground);
+//            Picasso.get().load(mData.get(position).getImg()).into(holder.imgProfile);
+//        } else {
+//            Picasso.get().load(Utils.emptyImage).into(holder.imgBackground);
+//            Picasso.get().load(Utils.emptyImage).into(holder.imgProfile);
+//        }
 
 
         holder.card_exhibitor.setOnClickListener(new View.OnClickListener() {
