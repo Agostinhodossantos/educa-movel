@@ -64,6 +64,7 @@
                                     android:src="@drawable/exhibitor2" />
 
                                 <ImageView
+                                    android:id="@+id/img_play"
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:layout_alignEnd="@+id/img_profile"
@@ -330,7 +331,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Minha galeria"
+                android:text="Nossa galeria"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="5dp"

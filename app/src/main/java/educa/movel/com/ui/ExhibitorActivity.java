@@ -18,6 +18,7 @@ public class ExhibitorActivity extends AppCompatActivity {
 
     List<Image> imageList = new ArrayList<>();
     private RecyclerView rv_gallery;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
