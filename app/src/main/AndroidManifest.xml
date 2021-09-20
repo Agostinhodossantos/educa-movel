@@ -13,7 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EducaMovel">
-        <activity android:name=".ui.VideoActivity"/>
+
+        <activity
+            android:name=".ui.ImagesFullScreen"
+            android:exported="true"
+            />
+
+
+        <activity
+            android:name=".ui.VideoActivity"
+            android:exported="true"
+            />
+
         <activity
             android:name=".ui.ExhibitorActivity"
             android:exported="true" />
