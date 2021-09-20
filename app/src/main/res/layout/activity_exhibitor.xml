@@ -56,6 +56,9 @@
                                     android:layout_height="150dp"
                                     android:layout_marginStart="20dp"
                                     android:layout_marginTop="20dp"
+                                    app:civ_border_overlay="true"
+                                    app:civ_border_width="0.5dp"
+                                    app:civ_border_color="@color/purple_500"
                                     android:layout_marginEnd="20dp"
                                     android:layout_marginBottom="20dp"
                                     android:src="@drawable/exhibitor2" />
