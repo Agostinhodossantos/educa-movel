@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="5dp"
+    android:elevation="2dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/youtube_player_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:autoPlay="true"
+            app:videoId="spskAO3O3j0w"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showFullScreenButton="false"
+            />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:text="Video loren ipsun"
+            android:padding="8dp"
+            />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

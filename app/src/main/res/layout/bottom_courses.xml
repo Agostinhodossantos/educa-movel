@@ -7,13 +7,16 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:layout_height="match_parent">
+
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:title="Cursos"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
+        android:id="@+id/course_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

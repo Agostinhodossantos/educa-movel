@@ -11,7 +11,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +29,9 @@ public class ExhibitorActivity extends AppCompatActivity {
     List<Image> imageList = new ArrayList<>();
     private RecyclerView rv_gallery;
     private ImageView img_play;
-    private Button btn_courses;
+    private Button btn_courses,btn_galery;
+    private TextView btn_expand, tv_description;
+    private ExpandableRelativeLayout expandableRelativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,32 @@ public class ExhibitorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exhibitor);
 
         initUI();
+        expandableRelativeLayout.collapse();
+
+        btn_galery.setOnClickListener( v -> {
+            Intent intent = new Intent(ExhibitorActivity.this , ImagesFullScreen.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("images" , (Serializable) imageList);
+            intent.putExtras(bundle);
+            intent.putExtra("position" , 0);
+            startActivity(intent);
+        });
+
+        btn_expand.setOnClickListener(v -> {
+            if (expandableRelativeLayout.isExpanded()) {
+                expandableRelativeLayout.setDuration(500);
+                expandableRelativeLayout.toggle();
+                tv_description.setVisibility(View.VISIBLE);
+                btn_expand.setText("Ver mais");
+            } else {
+                btn_expand.setText("Ver menos");
+                expandableRelativeLayout.setDuration(500);
+                expandableRelativeLayout.toggle();
+                tv_description.setVisibility(View.GONE);
+            }
+
+        });
+
         img_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,9 +108,13 @@ public class ExhibitorActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        tv_description = findViewById(R.id.tv_description);
         rv_gallery = findViewById(R.id.rv_gallery);
         img_play = findViewById(R.id.img_play);
         btn_courses = findViewById(R.id.btn_courses);
+        btn_expand = findViewById(R.id.btn_expand);
+        expandableRelativeLayout = findViewById(R.id.expandableLayout);
+        btn_galery = findViewById(R.id.btn_galery);
     }
 }
 
