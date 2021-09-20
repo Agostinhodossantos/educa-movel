@@ -5,7 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +21,22 @@ public class ExhibitorActivity extends AppCompatActivity {
 
     List<Image> imageList = new ArrayList<>();
     private RecyclerView rv_gallery;
+    private ImageView img_play;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exhibitor);
+
+        initUI();
+        img_play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ExhibitorActivity.this, VideoActivity.class);
+                intent.putExtra("url", "https://www.youtube.com/watch?v=x-Fs-wAmbRY");
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -51,6 +65,7 @@ public class ExhibitorActivity extends AppCompatActivity {
 
     private void initUI() {
         rv_gallery = findViewById(R.id.rv_gallery);
+        img_play = findViewById(R.id.img_play);
     }
 }
 
