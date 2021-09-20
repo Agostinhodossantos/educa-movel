@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="160dp">
+    android:layout_width="200dp"
+    android:layout_height="260dp">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/img_gallery"
         android:scaleType="centerCrop"
-        app:riv_corner_radius="3dp"
-        android:layout_margin="3dp"
+        app:riv_corner_radius="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
         android:src="@drawable/exhibitor2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

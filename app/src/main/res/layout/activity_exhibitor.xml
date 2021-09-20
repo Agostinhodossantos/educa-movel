@@ -303,7 +303,7 @@
                             android:textAllCaps="false"
                             android:layout_gravity="center"
                             android:layout_marginEnd="10dp"
-                            android:text="Produtos"
+                            android:text="Cursos"
                             />
 
                         <Button
@@ -321,31 +321,34 @@
                 </LinearLayout>
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Minha galeria"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginBottom="5dp"
-                    />
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_gallery"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-                <TextView
-                    android:id="@+id/tv_logout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:padding="10dp"
-                    android:layout_gravity="center"
-                    android:text="Terminar sessão"/>
-
-
             </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Minha galeria"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="5dp"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_gallery"
+                android:paddingStart="20dp"
+                android:clipToPadding = "false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/tv_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:layout_gravity="center"
+                android:text="#Educa movel"/>
+
+
 
 
         </LinearLayout>
