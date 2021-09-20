@@ -82,7 +82,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:numStars="5"
-                                android:rating="3" />
+                                android:rating="5" />
 
                             <TextView
                                 android:id="@+id/tv_title"
@@ -300,7 +300,7 @@
                         android:layout_height="wrap_content">
 
                         <Button
-                            android:id="@+id/btn_add_product"
+                            android:id="@+id/btn_courses"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"

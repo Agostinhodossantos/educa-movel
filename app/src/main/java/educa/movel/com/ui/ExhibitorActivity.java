@@ -1,6 +1,7 @@
 package educa.movel.com.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -8,12 +9,14 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import educa.movel.com.R;
+import educa.movel.com.bottom.BottomSheetCourses;
 import educa.movel.com.model.Image;
 import educa.movel.com.rv.RvGallery;
 
@@ -22,6 +25,7 @@ public class ExhibitorActivity extends AppCompatActivity {
     List<Image> imageList = new ArrayList<>();
     private RecyclerView rv_gallery;
     private ImageView img_play;
+    private Button btn_courses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,14 @@ public class ExhibitorActivity extends AppCompatActivity {
                 Intent intent = new Intent(ExhibitorActivity.this, VideoActivity.class);
                 intent.putExtra("url", "https://www.youtube.com/watch?v=x-Fs-wAmbRY");
                 startActivity(intent);
+            }
+        });
+
+        btn_courses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetCourses bottomSheetCourses = new BottomSheetCourses();
+                bottomSheetCourses.show(getSupportFragmentManager() , "bottomSheet");
             }
         });
 
@@ -66,6 +78,7 @@ public class ExhibitorActivity extends AppCompatActivity {
     private void initUI() {
         rv_gallery = findViewById(R.id.rv_gallery);
         img_play = findViewById(R.id.img_play);
+        btn_courses = findViewById(R.id.btn_courses);
     }
 }
 
