@@ -16,12 +16,13 @@ import educa.movel.com.R;
 import educa.movel.com.databinding.FragmentHomeBinding;
 import educa.movel.com.ui.VideoActivity;
 import educa.movel.com.ui.VideosListActivity;
+import educa.movel.com.ui.game.GameActivity;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
-    private CardView card_video;
+    private CardView card_video, card_concourse;
     private View root;
 
 
@@ -50,11 +51,21 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        card_concourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), GameActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return root;
     }
 
     private void initUI() {
         card_video = root.findViewById(R.id.card_video);
+        card_concourse = root.findViewById(R.id.card_concourse);
     }
 
     @Override
