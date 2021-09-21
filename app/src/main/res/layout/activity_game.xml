@@ -69,6 +69,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_gravity="center_vertical"
                 />
+
             <TextView
                 android:id="@+id/tv_option_1"
                 android:layout_width="match_parent"

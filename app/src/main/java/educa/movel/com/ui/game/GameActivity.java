@@ -2,13 +2,16 @@ package educa.movel.com.ui.game;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +28,9 @@ public class GameActivity extends AppCompatActivity {
     private int currentClickedBtn = 0;
     private int currentQuestion = 0;
     private int playerPoints = 0;
+    private AlertDialog dialog = null;
+    private static final int GAME_QUESTION = 20;
+
 
 
     @Override
@@ -35,9 +41,10 @@ public class GameActivity extends AppCompatActivity {
         Window window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.BLACK);
+        window.setStatusBarColor(getResources().getColor(R.color.custom_black));
 
         initUI();
+        getQuestions();
         setQuestionUI();
 
         btn_option_1.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +65,7 @@ public class GameActivity extends AppCompatActivity {
         });
 
 
-        btn_option_1.setOnClickListener(new View.OnClickListener() {
+        btn_option_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 currentClickedBtn = 3;
@@ -84,11 +91,28 @@ public class GameActivity extends AppCompatActivity {
                 .getCorrectAnswer()
                 .trim();
 
+
         if (isCorrect(correctAnswer, getAnswer())) {
             playerPoints++;
             nextGame();
         } else  {
-            btn_option_4.setBackgroundResource(R.drawable.btn_bg_erro);
+
+            switch (currentClickedBtn) {
+
+                case 1:
+                    btn_option_1.setBackgroundResource(R.drawable.btn_bg_erro);
+                    break;
+                case 2:
+                    btn_option_2.setBackgroundResource(R.drawable.btn_bg_erro);
+                    break;
+                case 3:
+                    btn_option_3.setBackgroundResource(R.drawable.btn_bg_erro);
+                    break;
+                case 4:
+                    btn_option_4.setBackgroundResource(R.drawable.btn_bg_erro);
+                    break;
+            }
+
             nextGame();
         }
 
@@ -100,24 +124,40 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void updateUI() {
-        btn_option_1.setBackgroundResource(R.drawable.btn_bg_1);
-        btn_option_2.setBackgroundResource(R.drawable.btn_bg_1);
-        btn_option_3.setBackgroundResource(R.drawable.btn_bg_1);
-        btn_option_4.setBackgroundResource(R.drawable.btn_bg_1);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                btn_option_1.setBackgroundResource(R.drawable.btn_bg_1);
+                btn_option_2.setBackgroundResource(R.drawable.btn_bg_1);
+                btn_option_3.setBackgroundResource(R.drawable.btn_bg_1);
+                btn_option_4.setBackgroundResource(R.drawable.btn_bg_1);
+
+                currentQuestion++;
+
+                if (currentQuestion > questionList.size() - 1 || currentQuestion == 21) {
+                    endGame();
+                } else {
+                    setQuestionUI();
+                }
+
+            }
+        }, 1500);
 
 
     }
 
     private void setQuestionUI() {
+
         tv_option_1.setText(questionList.get(currentQuestion).getAnswer1());
         tv_option_2.setText(questionList.get(currentQuestion).getAnswer2());
         tv_option_3.setText(questionList.get(currentQuestion).getAnswer3());
         tv_option_4.setText(questionList.get(currentQuestion).getAnswer4());
-
         tv_question.setText(questionList.get(currentQuestion).getQuestion());
     }
 
     private void showTheCorrectAnswer() {
+
         if (tv_option_1.getText().toString().trim().equalsIgnoreCase(questionList.get(currentQuestion)
                 .getCorrectAnswer().trim())) {
             btn_option_1.setBackgroundResource(R.drawable.btn_bg_certo);
@@ -141,7 +181,7 @@ public class GameActivity extends AppCompatActivity {
 
     private String getAnswer() {
         String answer = "";
-        switch (currentQuestion) {
+        switch (currentClickedBtn) {
             case 1:
                 answer = tv_option_1.getText().toString().trim().toLowerCase();
                 break;
@@ -180,6 +220,16 @@ public class GameActivity extends AppCompatActivity {
         questionList.add(new Question("3 + 2", "4", "5", "6", "8", "5"));
         questionList.add(new Question("5 + 5", "4", "2", "6", "10", "10"));
         questionList.add(new Question("2 + 2", "4", "2", "6", "8", "4"));
+    }
+
+    private void endGame() {
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView = getLayoutInflater().inflate(R.layout.end_game, null);
+
+        mBuilder.setView(mView);
+        dialog = mBuilder.create();
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.show();
     }
 
     private void initUI() {
