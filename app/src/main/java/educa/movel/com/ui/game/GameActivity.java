@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +32,7 @@ public class GameActivity extends AppCompatActivity {
     private int playerPoints = 0;
     private AlertDialog dialog = null;
     private static final int GAME_QUESTION = 20;
+    private LottieAnimationView animationView;
 
 
 
@@ -86,6 +89,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void checkAnswer() {
+        disableBtns();
         String correctAnswer = questionList
                 .get(currentQuestion)
                 .getCorrectAnswer()
@@ -93,6 +97,7 @@ public class GameActivity extends AppCompatActivity {
 
 
         if (isCorrect(correctAnswer, getAnswer())) {
+            animationView.setVisibility(View.VISIBLE);
             playerPoints++;
             nextGame();
         } else  {
@@ -134,15 +139,17 @@ public class GameActivity extends AppCompatActivity {
                 btn_option_4.setBackgroundResource(R.drawable.btn_bg_1);
 
                 currentQuestion++;
+                animationView.setVisibility(View.GONE);
 
                 if (currentQuestion > questionList.size() - 1 || currentQuestion == 21) {
                     endGame();
                 } else {
                     setQuestionUI();
+                    enableBtns();
                 }
 
             }
-        }, 1500);
+        }, 4000);
 
 
     }
@@ -232,6 +239,20 @@ public class GameActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    private void disableBtns() {
+        btn_option_1.setClickable(false);
+        btn_option_2.setClickable(false);
+        btn_option_3.setClickable(false);
+        btn_option_4.setClickable(false);
+    }
+
+    private void enableBtns() {
+        btn_option_1.setClickable(true);
+        btn_option_2.setClickable(true);
+        btn_option_3.setClickable(true);
+        btn_option_4.setClickable(true);
+    }
+
     private void initUI() {
         btn_option_1 = (LinearLayout) findViewById(R.id.btn_option_1);
         btn_option_2 = (LinearLayout) findViewById(R.id.btn_option_2);
@@ -244,5 +265,8 @@ public class GameActivity extends AppCompatActivity {
         tv_option_4 = (TextView) findViewById(R.id.tv_option_4);
 
         tv_question = (TextView) findViewById(R.id.tv_question);
+
+        animationView = findViewById(R.id.animationView);
     }
+
 }
