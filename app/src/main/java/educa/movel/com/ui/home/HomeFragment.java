@@ -1,5 +1,6 @@
 package educa.movel.com.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,24 +8,29 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import educa.movel.com.R;
 import educa.movel.com.databinding.FragmentHomeBinding;
+import educa.movel.com.ui.VideoActivity;
+import educa.movel.com.ui.VideosListActivity;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-private FragmentHomeBinding binding;
+    private FragmentHomeBinding binding;
+    private CardView card_video;
+    private View root;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+            homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
     binding = FragmentHomeBinding.inflate(inflater, container, false);
-    View root = binding.getRoot();
+    root = binding.getRoot();
 
 
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -34,10 +40,24 @@ private FragmentHomeBinding binding;
 
             }
         });
+
+        initUI();
+
+        card_video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), VideosListActivity.class);
+                startActivity(intent);
+            }
+        });
         return root;
     }
 
-@Override
+    private void initUI() {
+        card_video = root.findViewById(R.id.card_video);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;

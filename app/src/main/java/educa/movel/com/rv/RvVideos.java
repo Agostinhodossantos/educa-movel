@@ -19,21 +19,22 @@ import java.util.List;
 
 import educa.movel.com.R;
 import educa.movel.com.model.Image;
+import educa.movel.com.model.Video;
 import educa.movel.com.ui.ImagesFullScreen;
 
 
 public class RvVideos extends RecyclerView.Adapter<RvVideos.MyViewHoder> {
     private Context mContext;
-    private List<Image> mData;
+    private List<Video> mData;
 
-    public RvVideos(Context mContext, List<Image> mData ) {
+    public RvVideos(Context mContext, List<Video> mData ) {
         this.mContext = mContext;
         this.mData = mData;
     }
 
     @Override
     public MyViewHoder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.item_gallery, viewGroup,false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.item_video, viewGroup,false);
 
         MyViewHoder viewHoder = new MyViewHoder(v);
 
@@ -43,22 +44,7 @@ public class RvVideos extends RecyclerView.Adapter<RvVideos.MyViewHoder> {
     @Override
     public void onBindViewHolder(@NonNull final MyViewHoder holder, final int position) {
 
-        String img = mData.get(position).getImg();
-        if (!img.isEmpty()) {
-            Picasso.get().load(mData.get(position).getImg()).into(holder.img);
-        }
 
-        holder.img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext , ImagesFullScreen.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("images" , (Serializable) mData);
-                intent.putExtras(bundle);
-                intent.putExtra("position" , position);
-                mContext.startActivity(intent);
-            }
-        });
 
     }
 
