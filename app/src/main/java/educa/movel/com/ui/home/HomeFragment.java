@@ -17,6 +17,7 @@ import educa.movel.com.databinding.FragmentHomeBinding;
 import educa.movel.com.ui.VideoActivity;
 import educa.movel.com.ui.VideosListActivity;
 import educa.movel.com.ui.game.GameActivity;
+import educa.movel.com.ui.login.LoginActivity;
 
 public class HomeFragment extends Fragment {
 
@@ -55,8 +56,16 @@ public class HomeFragment extends Fragment {
         card_concourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), GameActivity.class);
-                startActivity(intent);
+
+                // TODO: 9/22/2021 check if current user is loged //
+                if(true) {
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getContext(), GameActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 

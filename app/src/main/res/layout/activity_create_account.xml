@@ -32,10 +32,36 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/ed_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
                 android:id="@+id/ed_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/ed_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:hint="Telefone" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -64,10 +90,10 @@
                 android:id="@+id/tv_forgot_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#00BCD4"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Esqueceu password?" />
+                android:text=""
+                android:textColor="#00BCD4" />
 
             <TextView
                 android:id="@+id/tv_create_acount"
@@ -76,7 +102,7 @@
                 android:layout_alignParentEnd="true"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Não tens uma conta?"
+                android:text="Ja tens uma conta?"
                 android:textColor="#00BCD4" />
         </RelativeLayout>
 

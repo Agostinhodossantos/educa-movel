@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import educa.movel.com.R;
 
@@ -19,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_enter;
     //private FirebaseAuth mAuth;
     private ProgressBar progress;
+    private TextView tv_create_account, tv_forgot_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,15 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         initUI();
+
+        tv_create_account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
+                startActivity(intent);
+            }
+        });
+
         btn_enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                     ed_password.setHintTextColor(Color.RED);
                 } else {
                     setProgressState(true);
-                    login(email, password);
+                    //login(email, password);
                 }
             }
         });
@@ -77,6 +88,8 @@ public class LoginActivity extends AppCompatActivity {
 //    }
 
     private void initUI() {
+        tv_create_account = findViewById(R.id.tv_create_acount);
+        tv_forgot_password = findViewById(R.id.tv_forgot_password);
         progress = findViewById(R.id.progress);
         ed_email = findViewById(R.id.ed_email);
         ed_password = findViewById(R.id.ed_password);
