@@ -12,6 +12,10 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.shape.CornerFamily;
+
 import educa.movel.com.R;
 import educa.movel.com.databinding.FragmentHomeBinding;
 import educa.movel.com.ui.VideoActivity;
@@ -25,6 +29,8 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private CardView card_video, card_concourse;
     private View root;
+    private ShapeableImageView img_background;
+    private ShapeableImageView img_background_2;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -69,12 +75,30 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        shapeImage();
         return root;
     }
 
+    private void shapeImage() {
+        float radius = 25f;
+        img_background.setShapeAppearanceModel(img_background.getShapeAppearanceModel()
+                .toBuilder()
+                .setBottomRightCorner(CornerFamily.ROUNDED,radius)
+                .setBottomLeftCorner(CornerFamily.ROUNDED,radius)
+                .build());
+
+        img_background_2.setShapeAppearanceModel(img_background_2.getShapeAppearanceModel()
+                .toBuilder()
+                .setBottomRightCorner(CornerFamily.ROUNDED,radius)
+                .setBottomLeftCorner(CornerFamily.ROUNDED,radius)
+                .build());
+    }
+
     private void initUI() {
+        img_background = root.findViewById(R.id.img_background);
         card_video = root.findViewById(R.id.card_video);
         card_concourse = root.findViewById(R.id.card_concourse);
+        img_background_2 = root.findViewById(R.id.img_background_2);
     }
 
     @Override

@@ -2,7 +2,7 @@
     <string name="app_name">Educa movel</string>
     <string name="title_home">Inicio</string>
     <string name="title_dashboard">Exposição</string>
-    <string name="title_notifications">Minha conta</string>
+    <string name="title_notifications">Educa+</string>
 
     <string-array name="array_technology">
         <item>Android</item>

@@ -10,13 +10,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.shape.CornerFamily;
+
 import educa.movel.com.R;
 import educa.movel.com.databinding.FragmentNotificationsBinding;
 
 public class NotificationsFragment extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
-private FragmentNotificationsBinding binding;
+    private FragmentNotificationsBinding binding;
+    private ShapeableImageView imageView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +38,17 @@ private FragmentNotificationsBinding binding;
                 textView.setText(s);
             }
         });
+
+
+        imageView = root.findViewById(R.id.shapeableimage);
+
+
+        float radius = 20f;
+        imageView.setShapeAppearanceModel(imageView.getShapeAppearanceModel()
+                .toBuilder()
+                .setTopRightCorner(CornerFamily.ROUNDED,radius)
+                .build());
+
         return root;
     }
 
