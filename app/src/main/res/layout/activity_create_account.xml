@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.login.CreateAccountActivity">
 
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/educa_logo"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:drawableEnd="@drawable/ic_baseline_arrow_forward_24"
-            android:text="Entrar" />
+            android:text="Cadastrar" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
