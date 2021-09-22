@@ -223,6 +223,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void getQuestions() {
+
         questionList.add(new Question("2 + 2", "4", "2", "6", "8", "4"));
         questionList.add(new Question("3 + 2", "4", "5", "6", "8", "5"));
         questionList.add(new Question("5 + 5", "4", "2", "6", "10", "10"));
