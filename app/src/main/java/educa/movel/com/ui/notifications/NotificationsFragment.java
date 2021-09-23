@@ -21,7 +21,6 @@ public class NotificationsFragment extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
     private FragmentNotificationsBinding binding;
-    private ShapeableImageView imageView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -39,15 +38,6 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
-
-        imageView = root.findViewById(R.id.shapeableimage);
-
-
-        float radius = 20f;
-        imageView.setShapeAppearanceModel(imageView.getShapeAppearanceModel()
-                .toBuilder()
-                .setTopRightCorner(CornerFamily.ROUNDED,radius)
-                .build());
 
         return root;
     }
