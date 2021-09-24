@@ -52,7 +52,7 @@ public class NotificationsFragment extends Fragment {
         }
 
         RvNews rvNews = new RvNews(getContext(), newsList);
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL);
         rv_news.setLayoutManager(layoutManager);
         rv_news.setAdapter(rvNews);
     }
