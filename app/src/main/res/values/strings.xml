@@ -18,4 +18,15 @@
         <item>.Net</item>
         <item>Perl</item>
     </string-array>
+
+    <string name="news" >
+        Hi Agostinho dos Santos Machava,
+
+        Thanks for applying to Google! There are a ton of great companies out there, so we appreciate your interest in joining our team.
+        While we’re not able to reach out to every applicant, our recruiting team will contact you if your skills and experience are a strong match for the role. In the meantime, join the conversation about job opportunities and life at Google on our LinkedIn page.
+        \n\n
+        Thanks for applying to Google! There are a ton of great companies out there, so we appreciate your interest in joining our team.
+        While we’re not able to reach out to every applicant, our recruiting team will contact you if your skills and experience are a strong match for the role. In the meantime, join the conversation about job opportunities and life at Google on our LinkedIn page.
+
+    </string>
 </resources>
