@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.shape.CornerFamily;
 
+import educa.movel.com.CodingTutorActivity;
 import educa.movel.com.R;
 import educa.movel.com.databinding.FragmentHomeBinding;
 import educa.movel.com.ui.VideoActivity;
@@ -27,7 +28,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
-    private CardView card_video, card_concourse;
+    private CardView card_video, card_concourse, card_programing_tutor;
     private View root;
     private ShapeableImageView img_background;
     private ShapeableImageView img_background_2;
@@ -39,6 +40,7 @@ public class HomeFragment extends Fragment {
 
     binding = FragmentHomeBinding.inflate(inflater, container, false);
     root = binding.getRoot();
+
 
 
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -75,6 +77,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        card_programing_tutor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CodingTutorActivity.class);
+                intent.putExtra("url", "https://www.youtube.com/watch?v=4ynvsrkamt8");
+                startActivity(intent);
+            }
+        });
+
         shapeImage();
         return root;
     }
@@ -98,6 +109,7 @@ public class HomeFragment extends Fragment {
         img_background = root.findViewById(R.id.img_background);
         card_video = root.findViewById(R.id.card_video);
         card_concourse = root.findViewById(R.id.card_concourse);
+        card_programing_tutor = root.findViewById(R.id.card_programing_tutor);
         img_background_2 = root.findViewById(R.id.img_background_2);
     }
 
