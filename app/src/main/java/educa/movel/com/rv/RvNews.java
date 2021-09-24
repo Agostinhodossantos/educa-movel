@@ -14,21 +14,21 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import java.util.List;
 
 import educa.movel.com.R;
-import educa.movel.com.model.Video;
+import educa.movel.com.model.News;
 
 
 public class RvNews extends RecyclerView.Adapter<RvNews.MyViewHoder> {
     private Context mContext;
-    private List<Video> mData;
+    private List<News> mData;
 
-    public RvNews(Context mContext, List<Video> mData ) {
+    public RvNews(Context mContext, List<News> mData ) {
         this.mContext = mContext;
         this.mData = mData;
     }
 
     @Override
     public MyViewHoder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.item_video, viewGroup,false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.info_card, viewGroup,false);
 
         MyViewHoder viewHoder = new MyViewHoder(v);
 
@@ -49,10 +49,10 @@ public class RvNews extends RecyclerView.Adapter<RvNews.MyViewHoder> {
 
     public static class MyViewHoder extends RecyclerView.ViewHolder{
 
-        private RoundedImageView img;
+
         public MyViewHoder(@NonNull View itemView) {
             super(itemView);
-            img = itemView.findViewById(R.id.img_gallery);
+
         }
     }
 }
