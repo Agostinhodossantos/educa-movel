@@ -28,6 +28,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import educa.movel.com.R;
+import educa.movel.com.bottom.BottomSheetCollege;
 import educa.movel.com.bottom.BottomSheetCourses;
 import educa.movel.com.bottom.BottomSheetDescription;
 import educa.movel.com.model.College;
@@ -50,6 +51,7 @@ public class ExhibitorActivity extends AppCompatActivity {
     Exhibitor exhibitor;
     private String uid;
     private List<Course> courseList = new ArrayList<>();
+    List<College> collegeList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,8 @@ public class ExhibitorActivity extends AppCompatActivity {
 
 
         btn_college.setOnClickListener( v -> {
-
+            BottomSheetCollege  bottomSheetCollege = new BottomSheetCollege(collegeList);
+            bottomSheetCollege.showNow(getSupportFragmentManager(), "bottomsheet");
         });
 
         btn_expand.setOnClickListener(v -> {
@@ -136,7 +139,6 @@ public class ExhibitorActivity extends AppCompatActivity {
     }
 
     private void getCollege() {
-        List<College> collegeList = new ArrayList<>();
 
         InitFirebase.initFirebase()
                 .child("institution")
