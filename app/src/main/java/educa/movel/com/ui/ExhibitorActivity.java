@@ -27,6 +27,7 @@ import java.util.List;
 
 import educa.movel.com.R;
 import educa.movel.com.bottom.BottomSheetCourses;
+import educa.movel.com.bottom.BottomSheetDescription;
 import educa.movel.com.model.Exhibitor;
 import educa.movel.com.model.Image;
 import educa.movel.com.rv.RvGallery;
@@ -40,7 +41,7 @@ public class ExhibitorActivity extends AppCompatActivity {
     private ImageView img_play;
     private Button btn_courses,btn_galery;
     private TextView btn_expand, tv_description, tv_title;
-
+    Exhibitor exhibitor;
     private String uid;
 
     @Override
@@ -62,6 +63,12 @@ public class ExhibitorActivity extends AppCompatActivity {
         });
 
         btn_expand.setOnClickListener(v -> {
+            if (exhibitor != null) {
+                BottomSheetDescription bottomSheetDescription = new BottomSheetDescription(exhibitor.getInstitution_name(), exhibitor.getInstitution_description() );
+                bottomSheetDescription.show(getSupportFragmentManager(), "bottomsheet");
+            } else {
+
+            }
 
         });
 
@@ -101,7 +108,7 @@ public class ExhibitorActivity extends AppCompatActivity {
              .addListenerForSingleValueEvent(new ValueEventListener() {
                  @Override
                  public void onDataChange(@NonNull DataSnapshot snapshot) {
-                     Exhibitor exhibitor = snapshot.getValue(Exhibitor.class);
+                     exhibitor = snapshot.getValue(Exhibitor.class);
                      tv_title.setText(exhibitor.getInstitution_name());
                      tv_description.setText(Utils.getCutStr(exhibitor.getInstitution_description(), 225));
 

@@ -33,7 +33,7 @@ public class BottomSheetDescription extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.bottom_courses , container , false);
+        view = inflater.inflate(R.layout.bottom_description , container , false);
         initUI();
         tv_description.setText(description);
         toolbar.setTitle(title);

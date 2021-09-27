@@ -7,6 +7,7 @@ public class Utils {
 
 
    public static String getCutStr(String str , int position) {
+      str = str.trim();
       if (str != null && ! str.isEmpty()){
 
          if (str.length() > position){
