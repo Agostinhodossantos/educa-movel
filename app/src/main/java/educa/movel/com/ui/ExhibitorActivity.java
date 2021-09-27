@@ -30,6 +30,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import educa.movel.com.R;
 import educa.movel.com.bottom.BottomSheetCourses;
 import educa.movel.com.bottom.BottomSheetDescription;
+import educa.movel.com.model.College;
 import educa.movel.com.model.Course;
 import educa.movel.com.model.Exhibitor;
 import educa.movel.com.model.Image;
@@ -123,12 +124,37 @@ public class ExhibitorActivity extends AppCompatActivity {
                         }
                         initGallery();
                         getCourses();
+                        getCollege();
 
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Log.d("exhibitor", error.toString());
+                    }
+                });
+    }
+
+    private void getCollege() {
+        List<College> collegeList = new ArrayList<>();
+
+        InitFirebase.initFirebase()
+                .child("institution")
+                .child(exhibitor.getUid())
+                .child("college")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        collegeList.clear();
+                        for (DataSnapshot objSnapshot : snapshot.getChildren()) {
+                            College college = objSnapshot.getValue(College.class);
+                            collegeList.add(college);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
                     }
                 });
     }
@@ -141,6 +167,7 @@ public class ExhibitorActivity extends AppCompatActivity {
                .addListenerForSingleValueEvent(new ValueEventListener() {
                    @Override
                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                       courseList.clear();
                        for (DataSnapshot objSnapshot: snapshot.getChildren()) {
                            Course course = objSnapshot.getValue(Course.class);
                            courseList.add(course);
