@@ -13,6 +13,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
    <com.makeramen.roundedimageview.RoundedImageView
+       android:id="@+id/img"
        android:layout_width="100dp"
        android:layout_height="100dp"
        android:scaleType="centerCrop"
@@ -29,11 +30,13 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tv_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/purple_700"
         android:text="Tecnologia"/>
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
@@ -46,16 +49,16 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:text="Ontem"
-            android:textColor="#B5B5B5"
-            android:textSize="10sp"
-            android:layout_marginEnd="15dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            />
+            android:layout_marginEnd="15dp"
+            android:text="Ontem"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#B5B5B5"
+            android:textSize="10sp" />
     </RelativeLayout>
 
 </LinearLayout>

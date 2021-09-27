@@ -18,7 +18,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
             android:orientation="vertical"
@@ -26,27 +26,34 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                android:text="Xiaomi anuncia notebook gamer Redmi G 2021 com RTX 3060"
+                android:text="Carregando"
                 />
 
-            <com.google.android.material.imageview.ShapeableImageView
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/img_info"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:riv_corner_radius="3dp"
                 android:scaleType="fitStart"
                 android:src="@drawable/exhibitor2"
                 />
 
             <TextView
+                android:id="@+id/tv_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:textAppearance="@style/TextAppearance.AppCompat"
-                android:text="@string/news"
+                android:text="carregando"
+                xmlns:tools="http://schemas.android.com/tools"
+                tools:text="@string/news"
                 />
 
         </LinearLayout>
