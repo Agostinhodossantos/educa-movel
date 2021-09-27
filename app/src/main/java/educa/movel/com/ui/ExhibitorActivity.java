@@ -20,14 +20,17 @@ import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import educa.movel.com.R;
 import educa.movel.com.bottom.BottomSheetCourses;
 import educa.movel.com.bottom.BottomSheetDescription;
+import educa.movel.com.model.Course;
 import educa.movel.com.model.Exhibitor;
 import educa.movel.com.model.Image;
 import educa.movel.com.rv.RvGallery;
@@ -39,10 +42,13 @@ public class ExhibitorActivity extends AppCompatActivity {
     List<Image> imageList = new ArrayList<>();
     private RecyclerView rv_gallery;
     private ImageView img_play;
-    private Button btn_courses,btn_galery;
+    private Button btn_courses,btn_college;
     private TextView btn_expand, tv_description, tv_title;
+    private TextView tv_name, tv_call, tv_email, tv_location;
+    private CircleImageView img_profile;
     Exhibitor exhibitor;
     private String uid;
+    private List<Course> courseList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +59,8 @@ public class ExhibitorActivity extends AppCompatActivity {
         initUI();
 
 
-        btn_galery.setOnClickListener( v -> {
-            Intent intent = new Intent(ExhibitorActivity.this , ImagesFullScreen.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("images" , (Serializable) imageList);
-            intent.putExtras(bundle);
-            intent.putExtra("position" , 0);
-            startActivity(intent);
+        btn_college.setOnClickListener( v -> {
+
         });
 
         btn_expand.setOnClickListener(v -> {
@@ -76,7 +77,7 @@ public class ExhibitorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ExhibitorActivity.this, VideoActivity.class);
-                intent.putExtra("url", "https://www.youtube.com/watch?v=x-Fs-wAmbRY");
+                intent.putExtra("url", exhibitor.getVideo_link());
                 startActivity(intent);
             }
         });
@@ -84,7 +85,7 @@ public class ExhibitorActivity extends AppCompatActivity {
         btn_courses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BottomSheetCourses bottomSheetCourses = new BottomSheetCourses();
+                BottomSheetCourses bottomSheetCourses = new BottomSheetCourses(courseList);
                 bottomSheetCourses.show(getSupportFragmentManager() , "bottomSheet");
             }
         });
@@ -97,44 +98,91 @@ public class ExhibitorActivity extends AppCompatActivity {
         getIntentValue();
         initUI();
         getExhibitorValues();
-        getImages();
-        initGallery();
+
     }
 
     private void getExhibitorValues() {
         InitFirebase.initFirebase()
-             .child("institution")
-             .child(uid)
-             .addListenerForSingleValueEvent(new ValueEventListener() {
-                 @Override
-                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                     exhibitor = snapshot.getValue(Exhibitor.class);
-                     tv_title.setText(exhibitor.getInstitution_name());
-                     tv_description.setText(Utils.getCutStr(exhibitor.getInstitution_description(), 225));
+                .child("institution")
+                .child(uid)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        exhibitor = snapshot.getValue(Exhibitor.class);
+                        tv_title.setText(exhibitor.getInstitution_name());
+                        tv_description.setText(Utils.getCutStr(exhibitor.getInstitution_description(), 225));
+                        tv_name.setText(exhibitor.getInstitution_name());
+                        tv_call.setText(exhibitor.getPhone());
+                        tv_email.setText(exhibitor.getEmail());
+                        tv_location.setText(exhibitor.getLocation());
 
-                 }
+                        if (!exhibitor.getImg1().isEmpty()) {
+                            Picasso.get().load(exhibitor.getImg1()).into(img_profile);
+                        } else {
 
-                 @Override
-                 public void onCancelled(@NonNull DatabaseError error) {
-                     Log.d("exhibitor", error.toString());
-                 }
-             });
+                        }
+                        initGallery();
+                        getCourses();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.d("exhibitor", error.toString());
+                    }
+                });
+    }
+
+    private void getCourses() {
+       InitFirebase.initFirebase()
+               .child("institution")
+               .child(exhibitor.getUid())
+               .child("course")
+               .addListenerForSingleValueEvent(new ValueEventListener() {
+                   @Override
+                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+                       for (DataSnapshot objSnapshot: snapshot.getChildren()) {
+                           Course course = objSnapshot.getValue(Course.class);
+                           courseList.add(course);
+                       }
+                   }
+
+                   @Override
+                   public void onCancelled(@NonNull DatabaseError error) {
+
+                   }
+               });
     }
 
     private void initGallery() {
-        RvGallery adapter = new RvGallery(this , imageList);
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1 , LinearLayoutManager.HORIZONTAL);
-        rv_gallery.setLayoutManager(layoutManager);
-        rv_gallery.setAdapter(adapter);
-    }
-    private List<Image> getImages() {
+
         imageList.clear();
-       imageList.add(new Image("1" , "https://firebasestorage.googleapis.com/v0/b/igepe-6785f.appspot.com/o/exhibitor%2F66b8b93a-f7c7-4601-b9b6-7a901eb91fb1?alt=media&token=e7f57190-eed2-4ec0-86aa-0bf5393e5413"));
-       imageList.add(new Image("1" , "https://firebasestorage.googleapis.com/v0/b/igepe-6785f.appspot.com/o/exhibitor%2F66b8b93a-f7c7-4601-b9b6-7a901eb91fb1?alt=media&token=e7f57190-eed2-4ec0-86aa-0bf5393e5413"));
-       imageList.add(new Image("1" , "https://firebasestorage.googleapis.com/v0/b/igepe-6785f.appspot.com/o/exhibitor%2F66b8b93a-f7c7-4601-b9b6-7a901eb91fb1?alt=media&token=e7f57190-eed2-4ec0-86aa-0bf5393e5413"));
-       imageList.add(new Image("1" , "https://firebasestorage.googleapis.com/v0/b/igepe-6785f.appspot.com/o/exhibitor%2F66b8b93a-f7c7-4601-b9b6-7a901eb91fb1?alt=media&token=e7f57190-eed2-4ec0-86aa-0bf5393e5413"));
-       return imageList;
+        InitFirebase
+                .initFirebase()
+                .child("institution")
+                .child(exhibitor.getUid())
+                .child("gallery")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot objDataSnapshot: snapshot.getChildren()) {
+                            Image image = objDataSnapshot.getValue(Image.class);
+                            imageList.add(image);
+                        }
+                        RvGallery adapter = new RvGallery(ExhibitorActivity.this , imageList);
+                        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1 , LinearLayoutManager.HORIZONTAL);
+                        rv_gallery.setLayoutManager(layoutManager);
+                        rv_gallery.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
     }
+
 
     private void getIntentValue() {
         Intent intent = getIntent();
@@ -151,13 +199,18 @@ public class ExhibitorActivity extends AppCompatActivity {
 
 
     private void initUI() {
+        img_profile = findViewById(R.id.img_profile);
+        tv_location = findViewById(R.id.tv_location);
+        tv_email = findViewById(R.id.tv_email);
+        tv_call = findViewById(R.id.tv_call);
+        tv_name = findViewById(R.id.tv_name);
         tv_title = findViewById(R.id.tv_title);
         tv_description = findViewById(R.id.tv_description);
         rv_gallery = findViewById(R.id.rv_gallery);
         img_play = findViewById(R.id.img_play);
         btn_courses = findViewById(R.id.btn_courses);
         btn_expand = findViewById(R.id.btn_expand);
-        btn_galery = findViewById(R.id.btn_galery);
+        btn_college = findViewById(R.id.btn_college);
     }
 }
 

@@ -3,11 +3,11 @@ package educa.movel.com.model;
 import java.io.Serializable;
 
 public class Image implements Serializable {
-    private String uid, img;
+    private String uid, url;
 
-    public Image(String uid, String img) {
+    public Image(String uid, String url) {
         this.uid = uid;
-        this.img = img;
+        this.url = url;
     }
 
     public Image() {
@@ -21,11 +21,11 @@ public class Image implements Serializable {
         this.uid = uid;
     }
 
-    public String getImg() {
-        return img;
+    public String getUrl() {
+        return url;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

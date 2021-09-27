@@ -43,9 +43,9 @@ public class RvGallery extends RecyclerView.Adapter<RvGallery.MyViewHoder> {
     @Override
     public void onBindViewHolder(@NonNull final MyViewHoder holder, final int position) {
 
-        String img = mData.get(position).getImg();
+        String img = mData.get(position).getUrl();
         if (!img.isEmpty()) {
-            Picasso.get().load(mData.get(position).getImg()).into(holder.img);
+            Picasso.get().load(mData.get(position).getUrl()).into(holder.img);
         }
 
         holder.img.setOnClickListener(new View.OnClickListener() {

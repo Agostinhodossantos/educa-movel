@@ -56,12 +56,12 @@
                                     android:layout_height="150dp"
                                     android:layout_marginStart="20dp"
                                     android:layout_marginTop="20dp"
-                                    app:civ_border_overlay="true"
-                                    app:civ_border_width="0.5dp"
-                                    app:civ_border_color="@color/purple_500"
                                     android:layout_marginEnd="20dp"
                                     android:layout_marginBottom="20dp"
-                                    android:src="@drawable/exhibitor2" />
+                                    android:src="@drawable/educa_logo"
+                                    app:civ_border_color="@color/purple_500"
+                                    app:civ_border_overlay="true"
+                                    app:civ_border_width="0.5dp" />
 
                                 <ImageView
                                     android:id="@+id/img_play"
@@ -91,7 +91,7 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="center"
                                 android:maxWidth="250dp"
-                                android:text="Universidade Eduardo Mondlane"
+                                android:text="Exhibitor name here"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
                             <RelativeLayout
@@ -181,7 +181,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="Agostinho dos santos"/>
+                                android:text="Exhibitor name here"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -216,7 +216,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="+258 843655568"/>
+                                android:text="+258 number here"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -251,7 +251,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="agostinhodev@gmail.com"/>
+                                android:text="..."/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -309,13 +309,13 @@
                             />
 
                         <Button
-                            android:id="@+id/btn_galery"
+                            android:id="@+id/btn_college"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1.2"
                             android:textAllCaps="false"
                             android:layout_gravity="center"
-                            android:text="Galeria"
+                            android:text="Faculdades"
                             />
 
                     </LinearLayout>
