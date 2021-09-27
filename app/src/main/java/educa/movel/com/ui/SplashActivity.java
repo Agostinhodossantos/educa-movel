@@ -1,15 +1,25 @@
 package educa.movel.com.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import educa.movel.com.MainActivity;
 import educa.movel.com.R;
+import educa.movel.com.utils.InitFirebase;
 
 public class SplashActivity extends AppCompatActivity {
 

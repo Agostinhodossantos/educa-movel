@@ -1,5 +1,6 @@
 package educa.movel.com.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,12 +9,17 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,8 +27,11 @@ import java.util.List;
 
 import educa.movel.com.R;
 import educa.movel.com.bottom.BottomSheetCourses;
+import educa.movel.com.model.Exhibitor;
 import educa.movel.com.model.Image;
 import educa.movel.com.rv.RvGallery;
+import educa.movel.com.utils.InitFirebase;
+import educa.movel.com.utils.Utils;
 
 public class ExhibitorActivity extends AppCompatActivity {
 
@@ -30,16 +39,18 @@ public class ExhibitorActivity extends AppCompatActivity {
     private RecyclerView rv_gallery;
     private ImageView img_play;
     private Button btn_courses,btn_galery;
-    private TextView btn_expand, tv_description;
-    private ExpandableRelativeLayout expandableRelativeLayout;
+    private TextView btn_expand, tv_description, tv_title;
+
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exhibitor);
 
+        getIntentValue();
         initUI();
-        expandableRelativeLayout.collapse();
+
 
         btn_galery.setOnClickListener( v -> {
             Intent intent = new Intent(ExhibitorActivity.this , ImagesFullScreen.class);
@@ -51,17 +62,6 @@ public class ExhibitorActivity extends AppCompatActivity {
         });
 
         btn_expand.setOnClickListener(v -> {
-            if (expandableRelativeLayout.isExpanded()) {
-                expandableRelativeLayout.setDuration(500);
-                expandableRelativeLayout.toggle();
-                tv_description.setVisibility(View.VISIBLE);
-                btn_expand.setText("Ver mais");
-            } else {
-                btn_expand.setText("Ver menos");
-                expandableRelativeLayout.setDuration(500);
-                expandableRelativeLayout.toggle();
-                tv_description.setVisibility(View.GONE);
-            }
 
         });
 
@@ -87,9 +87,31 @@ public class ExhibitorActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        getIntentValue();
         initUI();
+        getExhibitorValues();
         getImages();
         initGallery();
+    }
+
+    private void getExhibitorValues() {
+        InitFirebase.initFirebase()
+             .child("institution")
+             .child(uid)
+             .addListenerForSingleValueEvent(new ValueEventListener() {
+                 @Override
+                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                     Exhibitor exhibitor = snapshot.getValue(Exhibitor.class);
+                     tv_title.setText(exhibitor.getInstitution_name());
+                     tv_description.setText(Utils.getCutStr(exhibitor.getInstitution_description(), 225));
+
+                 }
+
+                 @Override
+                 public void onCancelled(@NonNull DatabaseError error) {
+                     Log.d("exhibitor", error.toString());
+                 }
+             });
     }
 
     private void initGallery() {
@@ -107,13 +129,27 @@ public class ExhibitorActivity extends AppCompatActivity {
        return imageList;
     }
 
+    private void getIntentValue() {
+        Intent intent = getIntent();
+        if(getIntent()!=null && getIntent().getExtras()!=null){
+            Bundle bundle = getIntent().getExtras();
+            if(!bundle.getString("uid").equals(null)) {
+                uid = intent.getExtras().getString("uid");
+            }else {
+                Toast.makeText(this, "Ocoreu uma falha", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
+
+
     private void initUI() {
+        tv_title = findViewById(R.id.tv_title);
         tv_description = findViewById(R.id.tv_description);
         rv_gallery = findViewById(R.id.rv_gallery);
         img_play = findViewById(R.id.img_play);
         btn_courses = findViewById(R.id.btn_courses);
         btn_expand = findViewById(R.id.btn_expand);
-        expandableRelativeLayout = findViewById(R.id.expandableLayout);
         btn_galery = findViewById(R.id.btn_galery);
     }
 }

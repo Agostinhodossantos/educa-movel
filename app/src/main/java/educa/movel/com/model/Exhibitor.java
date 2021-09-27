@@ -4,18 +4,34 @@ import java.io.Serializable;
 
 
 public class Exhibitor implements Serializable {
-    private String uid, name, img,contact ,location, email, video, description;
 
+    String uid, category,
+    chat,
+    email,
+    img1,
+    img2,
+    institution_description,
+    institution_name,
+    location,
+    password,
+    phone,
+    video_link,
+    website;
 
-    public Exhibitor(String uid, String name, String img, String contact, String location, String email, String video, String description) {
+    public Exhibitor(String uid, String category, String chat, String email, String img1, String img2, String institution_description, String institution_name, String location, String password, String phone, String video_link, String website) {
         this.uid = uid;
-        this.name = name;
-        this.img = img;
-        this.contact = contact;
-        this.location = location;
+        this.category = category;
+        this.chat = chat;
         this.email = email;
-        this.video = video;
-        this.description = description;
+        this.img1 = img1;
+        this.img2 = img2;
+        this.institution_description = institution_description;
+        this.institution_name = institution_name;
+        this.location = location;
+        this.password = password;
+        this.phone = phone;
+        this.video_link = video_link;
+        this.website = website;
     }
 
     public Exhibitor() {
@@ -29,36 +45,20 @@ public class Exhibitor implements Serializable {
         this.uid = uid;
     }
 
-    public String getName() {
-        return name;
+    public String getCategory() {
+        return category;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public String getImg() {
-        return img;
+    public String getChat() {
+        return chat;
     }
 
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
+    public void setChat(String chat) {
+        this.chat = chat;
     }
 
     public String getEmail() {
@@ -69,20 +69,75 @@ public class Exhibitor implements Serializable {
         this.email = email;
     }
 
-    public String getVideo() {
-        return video;
+    public String getImg1() {
+        return img1;
     }
 
-    public void setVideo(String video) {
-        this.video = video;
+    public void setImg1(String img1) {
+        this.img1 = img1;
     }
 
-    public String getDescription() {
-        return description;
+    public String getImg2() {
+        return img2;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setImg2(String img2) {
+        this.img2 = img2;
     }
 
+    public String getInstitution_description() {
+        return institution_description;
+    }
+
+    public void setInstitution_description(String institution_description) {
+        this.institution_description = institution_description;
+    }
+
+    public String getInstitution_name() {
+        return institution_name;
+    }
+
+    public void setInstitution_name(String institution_name) {
+        this.institution_name = institution_name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getVideo_link() {
+        return video_link;
+    }
+
+    public void setVideo_link(String video_link) {
+        this.video_link = video_link;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
 }

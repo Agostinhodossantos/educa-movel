@@ -1,0 +1,143 @@
+{
+  "project_info": {
+    "project_number": "812293792882",
+    "firebase_url": "https://educa-mozambique.firebaseio.com",
+    "project_id": "educa-mozambique",
+    "storage_bucket": "educa-mozambique.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812293792882:android:021fe73076581d88ec0eeb",
+        "android_client_info": {
+          "package_name": "com.educa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812293792882-lg7jn9g8fn286t9mi0bmicne0km0gn28.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.educa",
+            "certificate_hash": "0b4dd456fb59099e9a9d921a34e38395d350f53b"
+          }
+        },
+        {
+          "client_id": "812293792882-6c960qqflrths9i8t0l54eijdu5t64va.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzq5OaMyspZcTlC4iCgHa0zzbMT1sEizc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812293792882-6c960qqflrths9i8t0l54eijdu5t64va.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812293792882:android:85bbe137adc1bd1aec0eeb",
+        "android_client_info": {
+          "package_name": "educa.movel.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812293792882-6c960qqflrths9i8t0l54eijdu5t64va.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzq5OaMyspZcTlC4iCgHa0zzbMT1sEizc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812293792882-6c960qqflrths9i8t0l54eijdu5t64va.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812293792882:android:c92cbe134d02ed17ec0eeb",
+        "android_client_info": {
+          "package_name": "mz.co.educa.EducaApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812293792882-6c960qqflrths9i8t0l54eijdu5t64va.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzq5OaMyspZcTlC4iCgHa0zzbMT1sEizc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812293792882-6c960qqflrths9i8t0l54eijdu5t64va.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812293792882:android:e83008ea36e813e8ec0eeb",
+        "android_client_info": {
+          "package_name": "offline.pdf.educaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812293792882-peo3tmor2ps0a71o2n7bbt3chl7e8t2a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "offline.pdf.educaapp",
+            "certificate_hash": "74e14cd15297886367046d68e5b1fa4d0bd2c487"
+          }
+        },
+        {
+          "client_id": "812293792882-6c960qqflrths9i8t0l54eijdu5t64va.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzq5OaMyspZcTlC4iCgHa0zzbMT1sEizc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812293792882-6c960qqflrths9i8t0l54eijdu5t64va.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

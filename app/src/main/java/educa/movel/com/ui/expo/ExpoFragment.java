@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +33,7 @@ import educa.movel.com.model.Exhibitor;
 import educa.movel.com.model.ImageAds;
 import educa.movel.com.pager.ViewPagerAdapter;
 import educa.movel.com.rv.RvExhibitor;
+import educa.movel.com.utils.InitFirebase;
 import me.relex.circleindicator.CircleIndicator;
 
 public class ExpoFragment extends Fragment {
@@ -42,6 +48,7 @@ public class ExpoFragment extends Fragment {
     private RecyclerView rv_exhibitor;
     private ExpoViewModel expoViewModel;
     private FragmentExpoBinding binding;
+    private ProgressBar progress;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -65,17 +72,33 @@ public class ExpoFragment extends Fragment {
 
     private void initExpo() {
         List<Exhibitor> exhibitorList = new ArrayList<>();
+        InitFirebase.initFirebase()
+                .child("institution")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        exhibitorList.clear();
+                        for (DataSnapshot objectSnapshot : snapshot.getChildren()){
+                            Exhibitor exhibitor = objectSnapshot.getValue(Exhibitor.class);
+                            exhibitorList.add(exhibitor);
+                        }
 
-        for (int i = 0; i < 10; i++) {
-            exhibitorList.add(new Exhibitor("1", "Google Glass",
-                    "https://firebasestorage.googleapis.com/v0/b/igepe-6785f.appspot.com/o/exhibitor%2F66b8b93a-f7c7-4601-b9b6-7a901eb91fb1?alt=media&token=e7f57190-eed2-4ec0-86aa-0bf5393e5413", "84365568", "Mocambique, Maputo","agostinho@gmail.com",
-                    "", "ss"));
-        }
 
-        RvExhibitor adapter = new RvExhibitor(getContext() , exhibitorList);
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2 , LinearLayoutManager.VERTICAL);
-        rv_exhibitor.setLayoutManager(layoutManager);
-        rv_exhibitor.setAdapter(adapter);
+                        RvExhibitor adapter = new RvExhibitor(getContext() , exhibitorList);
+                        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2 , LinearLayoutManager.VERTICAL);
+                        rv_exhibitor.setLayoutManager(layoutManager);
+                        rv_exhibitor.setAdapter(adapter);
+
+                        progress.setVisibility(View.GONE);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
     }
 
     private void initAds() {
@@ -113,6 +136,7 @@ public class ExpoFragment extends Fragment {
     }
 
     private void initUI(View view) {
+        progress = view.findViewById(R.id.progress);
         rv_exhibitor = view.findViewById(R.id.rv_exhibitor);
         viewPager = view.findViewById(R.id.vp_ads);
         circleIndicator = (CircleIndicator) view.findViewById(R.id.indicator);

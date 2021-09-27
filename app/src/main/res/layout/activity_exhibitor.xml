@@ -97,30 +97,6 @@
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
-                                <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-                                    android:id="@+id/expandableLayout"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    app:ael_duration="500"
-                                    app:ael_expanded="false"
-                                    app:ael_interpolator="fastOutSlowIn"
-                                    app:ael_orientation="vertical">
-
-                                    <TextView
-                                        android:id="@+id/tv_description_full"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="10dp"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginEnd="10dp"
-                                        android:layout_marginBottom="50dp"
-                                        android:gravity="center"
-                                        android:text="Lorem ipsum doconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqualor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" />
-
-
-                                </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
-
 
                                 <TextView
                                     android:id="@+id/tv_description"
