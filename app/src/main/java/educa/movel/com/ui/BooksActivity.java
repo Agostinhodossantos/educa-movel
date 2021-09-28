@@ -1,6 +1,7 @@
 package educa.movel.com.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -37,9 +38,9 @@ public class BooksActivity extends AppCompatActivity {
         for (int i = 0; i < 6; i++) {
             bookList.add(new Book("i", "Livro de Portugues","Portugues", "s"));
         }
-        RvBooks rvBooks = new RvBooks(getApplicationContext(), bookList);
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, LinearLayout.VERTICAL);
+        RvBooks rvNews = new RvBooks(this, bookList);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL);
         rv_books.setLayoutManager(layoutManager);
-        rv_books.setAdapter(rvBooks);
+        rv_books.setAdapter(rvNews);
     }
 }

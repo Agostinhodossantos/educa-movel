@@ -15,6 +15,7 @@ import java.util.List;
 
 import educa.movel.com.R;
 import educa.movel.com.model.Book;
+import educa.movel.com.ui.WebActivity;
 
 
 public class RvBooks extends RecyclerView.Adapter<RvBooks.MyViewHoder> {
@@ -40,7 +41,8 @@ public class RvBooks extends RecyclerView.Adapter<RvBooks.MyViewHoder> {
         holder.card_book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(mContext, WebActivity.class);
+                mContext.startActivity(intent);
             }
         });
     }
