@@ -15,6 +15,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.shape.CornerFamily;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import educa.movel.com.CodingTutorActivity;
 import educa.movel.com.R;
@@ -33,15 +35,18 @@ public class HomeFragment extends Fragment {
     private View root;
     private ShapeableImageView img_background;
     private ShapeableImageView img_background_2;
+    private FirebaseUser user;
+    private TextView tv_start;
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-            ViewGroup container, Bundle savedInstanceState) {
-            homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
-    binding = FragmentHomeBinding.inflate(inflater, container, false);
-    root = binding.getRoot();
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        root = binding.getRoot();
 
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        user =  firebaseAuth.getCurrentUser();
 
 
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -53,6 +58,8 @@ public class HomeFragment extends Fragment {
         });
 
         initUI();
+
+
 
         card_video.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,9 +80,7 @@ public class HomeFragment extends Fragment {
         card_concourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // TODO: 9/22/2021 check if current user is loged //
-                if(true) {
+                if(user == null) {
                     Intent intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                 } else {
@@ -121,6 +126,7 @@ public class HomeFragment extends Fragment {
         card_concourse = root.findViewById(R.id.card_concourse);
         card_programing_tutor = root.findViewById(R.id.card_programing_tutor);
         img_background_2 = root.findViewById(R.id.img_background_2);
+        tv_start = root.findViewById(R.id.tv_start);
     }
 
     @Override

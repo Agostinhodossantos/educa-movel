@@ -12,13 +12,19 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 import educa.movel.com.R;
+import educa.movel.com.ui.game.GameActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText ed_email, ed_password;
     private Button btn_enter;
-    //private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     private ProgressBar progress;
     private TextView tv_create_account, tv_forgot_password;
 
@@ -52,7 +58,8 @@ public class LoginActivity extends AppCompatActivity {
                     ed_password.setHintTextColor(Color.RED);
                 } else {
                     setProgressState(true);
-                    //login(email, password);
+
+                    login(email, password);
                 }
             }
         });
@@ -69,23 +76,23 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-//    private void login(String email, String password) {
-//        mAuth.signInWithEmailAndPassword(email, password)
-//                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-//                    @Override
-//                    public void onSuccess(AuthResult authResult) {
-//                        Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
-//                        startActivity(intent);
-//                        finish();
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        setProgressState(false);
-//                    }
-//                });
-//    }
+    private void login(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        Intent intent = new Intent(LoginActivity.this, GameActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        setProgressState(false);
+                    }
+                });
+    }
 
     private void initUI() {
         tv_create_account = findViewById(R.id.tv_create_acount);
