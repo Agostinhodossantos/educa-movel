@@ -20,6 +20,7 @@ public class WebActivity extends AppCompatActivity {
         setContentView(R.layout.activity_web);
         initUI();
         pdfOpen("https://rumoanovahumanidade.com.br/wp-content/uploads/2019/03/Foco-Daniel-Goleman-1.pdf");
+        finish();
     }
 
     private void initUI() {

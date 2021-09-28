@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="educa.movel.com">
+    package="educa.movel.com" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,7 +14,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EducaMovel">
+        android:theme="@style/Theme.EducaMovel" >
+        <activity
+            android:name=".ui.VocationalTestActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.WebActivity"
             android:exported="true" />
@@ -55,7 +58,7 @@
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

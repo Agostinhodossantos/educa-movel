@@ -36,7 +36,7 @@ public class BooksActivity extends AppCompatActivity {
 
     private void initBooks() {
         for (int i = 0; i < 6; i++) {
-            bookList.add(new Book("i", "Livro de Portugues","Portugues", "s"));
+            bookList.add(new Book("i", "Livro de Portugues","Portugues", "https://rumoanovahumanidade.com.br/wp-content/uploads/2019/03/Foco-Daniel-Goleman-1.pdf"));
         }
         RvBooks rvNews = new RvBooks(this, bookList);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL);

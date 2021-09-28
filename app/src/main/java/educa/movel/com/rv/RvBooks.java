@@ -3,6 +3,7 @@ package educa.movel.com.rv;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,8 +42,13 @@ public class RvBooks extends RecyclerView.Adapter<RvBooks.MyViewHoder> {
         holder.card_book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, WebActivity.class);
-                mContext.startActivity(intent);
+                String url = mData.get(position).getUrl();
+
+                if (!url.startsWith("http://") && !url.startsWith("https://"))
+                    url = "http://" + url;
+                url = "http://docs.google.com/gview?embedded=true&url="+url;
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                mContext.startActivity(browserIntent);
             }
         });
     }
