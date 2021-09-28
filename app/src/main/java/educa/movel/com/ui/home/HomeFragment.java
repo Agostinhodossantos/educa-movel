@@ -19,6 +19,7 @@ import com.google.android.material.shape.CornerFamily;
 import educa.movel.com.CodingTutorActivity;
 import educa.movel.com.R;
 import educa.movel.com.databinding.FragmentHomeBinding;
+import educa.movel.com.ui.BooksActivity;
 import educa.movel.com.ui.VideoActivity;
 import educa.movel.com.ui.VideosListActivity;
 import educa.movel.com.ui.game.GameActivity;
@@ -28,7 +29,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
-    private CardView card_video, card_concourse, card_programing_tutor;
+    private CardView card_video, card_concourse, card_programing_tutor,card_book;
     private View root;
     private ShapeableImageView img_background;
     private ShapeableImageView img_background_2;
@@ -57,6 +58,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), VideosListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        card_book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), BooksActivity.class);
                 startActivity(intent);
             }
         });
@@ -106,6 +115,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initUI() {
+        card_book = root.findViewById(R.id.card_book);
         img_background = root.findViewById(R.id.img_background);
         card_video = root.findViewById(R.id.card_video);
         card_concourse = root.findViewById(R.id.card_concourse);
