@@ -22,6 +22,7 @@ import educa.movel.com.CodingTutorActivity;
 import educa.movel.com.R;
 import educa.movel.com.databinding.FragmentHomeBinding;
 import educa.movel.com.ui.BooksActivity;
+import educa.movel.com.ui.UserProfileActivity;
 import educa.movel.com.ui.VideoActivity;
 import educa.movel.com.ui.VideosListActivity;
 import educa.movel.com.ui.game.GameActivity;
@@ -59,7 +60,13 @@ public class HomeFragment extends Fragment {
 
         initUI();
 
-
+        tv_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         card_video.setOnClickListener(new View.OnClickListener() {
             @Override
