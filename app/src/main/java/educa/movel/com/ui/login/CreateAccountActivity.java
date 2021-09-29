@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import educa.movel.com.R;
 import educa.movel.com.model.User;
 import educa.movel.com.utils.CheckField;
@@ -20,11 +22,13 @@ public class CreateAccountActivity extends AppCompatActivity {
     private EditText ed_email, ed_name, ed_number, ed_password;
     private TextView have_account;
     private ProgressBar progress;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
+        mAuth = FirebaseAuth.getInstance();
         initUI();
 
         btn_create.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +49,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         if (field.isEmail(name)) {
             ed_name.requestFocus();
             ed_name.setHintTextColor(Color.RED);
-        } else if (field.isEmail(email)) {
+        } else if (field.isEmpty(email)) {
             ed_email.requestFocus();
             ed_email.setHintTextColor(Color.RED);
         } else if (field.isEmpty(number)) {
@@ -59,7 +63,12 @@ public class CreateAccountActivity extends AppCompatActivity {
 
             User user = new User("", number, "" , email ,
                     "", "", name, password, "", "", "");
+
         }
+    }
+
+    private void authUser(User user) {
+
     }
 
     private void setProgressState(boolean inProgress) {
