@@ -1,7 +1,10 @@
 package educa.movel.com.ui.login;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -9,12 +12,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import educa.movel.com.R;
 import educa.movel.com.model.User;
 import educa.movel.com.utils.CheckField;
+import educa.movel.com.utils.InitFirebase;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
@@ -63,12 +71,47 @@ public class CreateAccountActivity extends AppCompatActivity {
 
             User user = new User("", number, "" , email ,
                     "", "", name, password, "", "", "");
+            authUser(user);
 
         }
     }
 
     private void authUser(User user) {
+        mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                      String uid = authResult.getUser().getUid();
+                      user.setUserId(uid);
+                      setUser(user);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(CreateAccountActivity.this, "Ocorreu uma falha: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 
+    private void setUser(User user) {
+        InitFirebase
+                .initFirebase()
+                .child("users")
+                .child(user.getUserId())
+                .setValue(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        // set data in result and back to login
+                        Intent intent = new Intent();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("user", user);
+                        intent.putExtras(bundle);
+                        CreateAccountActivity.this.setResult(Activity.RESULT_OK, intent);
+                        CreateAccountActivity.this.finish();
+                    }
+                });
     }
 
     private void setProgressState(boolean inProgress) {

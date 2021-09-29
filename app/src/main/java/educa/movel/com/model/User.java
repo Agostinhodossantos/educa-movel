@@ -1,6 +1,8 @@
 package educa.movel.com.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     String  category, contact, date_of_birth,
             email, genre, imageUrl, name, password,
             residence, school, userId;
