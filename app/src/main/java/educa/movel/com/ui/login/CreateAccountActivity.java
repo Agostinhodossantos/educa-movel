@@ -89,7 +89,8 @@ public class CreateAccountActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(CreateAccountActivity.this, "Ocorreu uma falha: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        setProgressState(false);
+                        Toast.makeText(CreateAccountActivity.this, "Ocorreu uma falha: "+e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }

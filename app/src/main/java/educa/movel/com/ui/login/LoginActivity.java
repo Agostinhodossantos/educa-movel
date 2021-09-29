@@ -1,11 +1,16 @@
 package educa.movel.com.ui.login;
 
+import static educa.movel.com.utils.Utils.REGISTER_CODE;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +24,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import educa.movel.com.R;
+import educa.movel.com.model.User;
 import educa.movel.com.ui.game.GameActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -42,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, REGISTER_CODE);
             }
         });
 
@@ -105,5 +111,16 @@ public class LoginActivity extends AppCompatActivity {
         ed_email = findViewById(R.id.ed_email);
         ed_password = findViewById(R.id.ed_password);
         btn_enter = findViewById(R.id.btn_enter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if (requestCode == REGISTER_CODE) {
+            User user = (User) data.getSerializableExtra("user");
+            finish();
+        }
     }
 }

@@ -63,8 +63,16 @@ public class HomeFragment extends Fragment {
         tv_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), UserProfileActivity.class);
-                startActivity(intent);
+                String name = "agostinho";
+
+                if (user == null) {
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getContext(), UserProfileActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 

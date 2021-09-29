@@ -7,19 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.UserProfileActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:layout_centerHorizontal="true"
-            android:text="Terminar sessão" />
-
-    </RelativeLayout>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -99,7 +87,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="Exhibitor name here"/>
+                                android:text=""/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -134,7 +122,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="+258 number here"/>
+                                android:text=""/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -204,7 +192,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="Moçambique, Maputo"/>
+                                android:text=""/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -212,8 +200,20 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="Terminar sessão" />
+
+    </RelativeLayout>
 </RelativeLayout>
