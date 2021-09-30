@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import educa.movel.com.R;
 import educa.movel.com.model.User;
+import educa.movel.com.ui.ForgotPasswordActivity;
 import educa.movel.com.ui.game.GameActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -43,6 +44,14 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         initUI();
+
+        tv_forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
 
         tv_create_account.setOnClickListener(new View.OnClickListener() {
             @Override
