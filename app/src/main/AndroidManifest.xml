@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EducaMovel">
         <activity
+            android:name=".ui.NewsActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.ForgotPasswordActivity"
             android:exported="true" />
         <activity

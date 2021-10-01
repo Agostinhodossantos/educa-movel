@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -39,6 +40,9 @@ public class RvBooks extends RecyclerView.Adapter<RvBooks.MyViewHoder> {
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHoder holder, final int position) {
+        holder.tv_title.setText(mData.get(position).getTitle());
+        holder.tv_author.setText(mData.get(position).getSubject());
+
         holder.card_book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,9 +65,13 @@ public class RvBooks extends RecyclerView.Adapter<RvBooks.MyViewHoder> {
     public static class MyViewHoder extends RecyclerView.ViewHolder{
 
         private CardView card_book;
+        private TextView tv_title;
+        private TextView tv_author;
         public MyViewHoder(@NonNull View itemView) {
             super(itemView);
             card_book = itemView.findViewById(R.id.card_book);
+            tv_title = itemView.findViewById(R.id.tv_title);
+            tv_author = itemView.findViewById(R.id.textView);
         }
     }
 }
