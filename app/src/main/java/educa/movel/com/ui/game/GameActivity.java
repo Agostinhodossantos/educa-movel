@@ -14,12 +14,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import educa.movel.com.R;
+import educa.movel.com.model.GameUser;
 import educa.movel.com.model.Question;
+import educa.movel.com.utils.InitFirebase;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -33,8 +39,7 @@ public class GameActivity extends AppCompatActivity {
     private AlertDialog dialog = null;
     private static final int GAME_QUESTION = 20;
     private LottieAnimationView animationView;
-
-
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +51,13 @@ public class GameActivity extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(getResources().getColor(R.color.custom_black));
 
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        user =  firebaseAuth.getCurrentUser();
+
         initUI();
         getQuestions();
         setQuestionUI();
+
 
         btn_option_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +134,16 @@ public class GameActivity extends AppCompatActivity {
             nextGame();
         }
 
+    }
+
+    private void createUser() {
+        String userUid = user.getUid();
+        String uid = UUID.randomUUID().toString();
+        GameUser user = new GameUser(uid, userUid, "", "", );
+        InitFirebase.initFirebase()
+                .child("educa_movel")
+                .child("user_list")
+                .child(uid)
     }
 
     private void nextGame() {
