@@ -109,7 +109,7 @@ public class ExpoFragment extends Fragment {
     }
     List<ImageAds> getImages() {
         for (int i = 0; i < 5; i++) {
-            imageAds.add(new ImageAds("https://firebasestorage.googleapis.com/v0/b/igepe-6785f.appspot.com/o/exhibitor%2F66b8b93a-f7c7-4601-b9b6-7a901eb91fb1?alt=media&token=e7f57190-eed2-4ec0-86aa-0bf5393e5413"));
+            imageAds.add(new ImageAds("https://firebasestorage.googleapis.com/v0/b/educa-mozambique.appspot.com/o/slider%2Fbanner.jpg?alt=media&token=f1c3f4b2-5bcf-48fe-bc20-c09aa8a375c7"));
         }
         return imageAds;
     }

@@ -21,18 +21,16 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_bottom_round"
                 android:scaleType="centerCrop"
-                android:src="@drawable/banner3">
+                android:src="@drawable/banner4">
             </com.google.android.material.imageview.ShapeableImageView>
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/img_background_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 android:alpha="0.4"
                 android:background="@drawable/bg_top"
-               >
-            </com.google.android.material.imageview.ShapeableImageView>
+                android:scaleType="centerCrop"></com.google.android.material.imageview.ShapeableImageView>
 
 
             <RelativeLayout
@@ -42,9 +40,8 @@
 
                 <ImageView
                     android:id="@+id/profile"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="10dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"

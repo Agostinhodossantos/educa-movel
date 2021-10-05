@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +47,7 @@ public class HomeFragment extends Fragment {
     private ShapeableImageView img_background;
     private ShapeableImageView img_background_2;
     private FirebaseUser user;
-    private TextView img_start;
+    private ImageView img_start;
     private TextView tv_location, tv_time;
 
 

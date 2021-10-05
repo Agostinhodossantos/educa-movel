@@ -52,7 +52,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         View view = LayoutInflater.from(context).inflate(R.layout.item_card,null ,false);
         ImageView imageview = view.findViewById(R.id.imageView);
 
-      //  Picasso.get().load(mListt.get(position).getImg()).fit().into(imageview);
+        Picasso.get().load(mListt.get(position).getImg()).fit().into(imageview);
 
 
 
