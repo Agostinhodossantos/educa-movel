@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
     private ShapeableImageView img_background;
     private ShapeableImageView img_background_2;
     private FirebaseUser user;
-    private TextView tv_start;
+    private TextView img_start;
     private TextView tv_location, tv_time;
 
 
@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        tv_start.setOnClickListener(new View.OnClickListener() {
+        img_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 user =  firebaseAuth.getCurrentUser();
@@ -193,7 +193,7 @@ public class HomeFragment extends Fragment {
         card_concourse = root.findViewById(R.id.card_concourse);
         card_programing_tutor = root.findViewById(R.id.card_programing_tutor);
         img_background_2 = root.findViewById(R.id.img_background_2);
-        tv_start = root.findViewById(R.id.tv_start);
+        img_start = root.findViewById(R.id.profile);
     }
 
     @Override

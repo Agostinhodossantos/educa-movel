@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -46,6 +47,7 @@ public class GameActivity extends AppCompatActivity {
     private static final int GAME_QUESTION = 20;
     private LottieAnimationView animationView;
     private FirebaseUser userAuth;
+    private TextView tv_points, tv_timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class GameActivity extends AppCompatActivity {
         userAuth =  firebaseAuth.getCurrentUser();
 
         initUI();
+        getPoints();
         getQuestions();
         setQuestionUI();
 
@@ -113,14 +116,9 @@ public class GameActivity extends AppCompatActivity {
 
         if (isCorrect(correctAnswer, getAnswer())) {
             animationView.setVisibility(View.VISIBLE);
-            playerPoints++;
+            playerPoints();
             nextGame();
         } else  {
-            // JUST DO IT
-            // JUST DO IT
-            // JUST DO IT
-            // JUST DO IT 8
-
             switch (currentClickedBtn) {
 
                 case 1:
@@ -144,8 +142,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void createUser(User user) {
 
-        String uid = UUID.randomUUID().toString();
-        GameUser userGame = new GameUser(uid, user.getUserId(), "", "", Utils.getDate(), 0);
+        GameUser userGame = new GameUser(user.getUserId(), user.getUserId(), user.getName(), getUSerCategory(user), Utils.getDate(), 0);
 
         InitFirebase.initFirebase()
                 .child("educa_movel")
@@ -154,11 +151,12 @@ public class GameActivity extends AppCompatActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (!snapshot.exists()) {
+                        Log.d("Snap", snapshot+"");
+                        if (snapshot.exists() != true) {
                             InitFirebase.initFirebase()
                                     .child("educa_movel")
                                     .child("user_list")
-                                    .child(uid)
+                                    .child(user.getUserId())
                                     .setValue(userGame);
                         }
                     }
@@ -171,8 +169,27 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    private String getUSerCategory(User user) {
+        String category = "" ;
+        String contact = user.getContact();
+        if (!contact.isEmpty()) {
+            if (contact.startsWith("84") || contact.startsWith("85")) {
+                category =  "vodacom";
+            } else if (contact.startsWith("87") || contact.startsWith("86")) {
+                category =  "movitel";
+            } else if (contact.startsWith("82") || contact.startsWith("83")) {
+                category =  "tmcel";
+            } else {
+                category =  "bdq";
+            }
+        }
+        return category;
+    }
+
     private void getUser() {
         String userUid = userAuth.getUid();
+
+        Toast.makeText(GameActivity.this, ""+userUid, Toast.LENGTH_SHORT).show();
         InitFirebase.initFirebase()
                 .child("users")
                 .child(userUid)
@@ -259,6 +276,32 @@ public class GameActivity extends AppCompatActivity {
 
     private void playerPoints() {
         playerPoints++;
+        tv_points.setText(playerPoints+"");
+        InitFirebase.initFirebase()
+                .child("educa_movel")
+                .child("user_list")
+                .child(userAuth.getUid())
+                .child("score")
+                .setValue(playerPoints);
+    }
+
+    private void getPoints() {
+        InitFirebase.initFirebase()
+                .child("educa_movel")
+                .child("user_list")
+                .child(userAuth.getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        GameUser user = snapshot.getValue(GameUser.class);
+                        tv_points.setText(user.getScore()+"");
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 
     private String getAnswer() {
@@ -340,6 +383,9 @@ public class GameActivity extends AppCompatActivity {
         tv_option_2 = (TextView) findViewById(R.id.tv_option_2);
         tv_option_3 = (TextView) findViewById(R.id.tv_option_3);
         tv_option_4 = (TextView) findViewById(R.id.tv_option_4);
+
+        tv_timer = (TextView) findViewById(R.id.tv_timer);
+        tv_points = (TextView) findViewById(R.id.tv_points);
 
         tv_question = (TextView) findViewById(R.id.tv_question);
 
