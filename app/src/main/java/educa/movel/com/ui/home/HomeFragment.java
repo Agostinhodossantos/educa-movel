@@ -1,6 +1,7 @@
 package educa.movel.com.ui.home;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +41,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
-    private CardView card_video, card_concourse, card_programing_tutor,card_book, card_news;
+    private CardView card_video, card_concourse, card_programing_tutor,card_book, card_news,card_vocational_test;
     private View root;
     private ShapeableImageView img_background;
     private ShapeableImageView img_background_2;
@@ -68,6 +69,15 @@ public class HomeFragment extends Fragment {
         });
 
         initUI();
+
+        card_vocational_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www.pravaler.com.br/testes/teste-vocacional-online-gratis";
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+            }
+        });
 
         card_news.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,7 +166,7 @@ public class HomeFragment extends Fragment {
         InitFirebase.initFirebase()
                 .child("educa_movel")
                 .child("location")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         CurrentLocation location = snapshot.getValue(CurrentLocation.class);
@@ -179,6 +189,7 @@ public class HomeFragment extends Fragment {
         card_book = root.findViewById(R.id.card_book);
         img_background = root.findViewById(R.id.img_background);
         card_video = root.findViewById(R.id.card_video);
+        card_vocational_test = root.findViewById(R.id.card_vocational_test);
         card_concourse = root.findViewById(R.id.card_concourse);
         card_programing_tutor = root.findViewById(R.id.card_programing_tutor);
         img_background_2 = root.findViewById(R.id.img_background_2);

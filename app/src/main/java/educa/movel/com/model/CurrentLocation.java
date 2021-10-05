@@ -10,6 +10,9 @@ public class CurrentLocation {
         this.end = end;
     }
 
+    public CurrentLocation() {
+    }
+
     public String getLocation() {
         return location;
     }

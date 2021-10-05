@@ -458,6 +458,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_vocational_test"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
