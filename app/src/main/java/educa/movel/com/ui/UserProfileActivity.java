@@ -52,10 +52,14 @@ public class UserProfileActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         User user = snapshot.getValue(User.class);
-                        tv_email.setText(user.getEmail());
-                        tv_name.setText(user.getName());
-                        tv_location.setText(user.getResidence());
-                        tv_phone.setText(user.getContact());
+
+                        if (user != null) {
+                            tv_email.setText(user.getEmail());
+                            tv_name.setText(user.getName());
+                            tv_location.setText(user.getResidence());
+                            tv_phone.setText(user.getContact());
+                        }
+
                     }
 
                     @Override

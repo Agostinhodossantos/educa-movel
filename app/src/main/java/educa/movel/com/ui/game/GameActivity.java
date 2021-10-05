@@ -101,6 +101,10 @@ public class GameActivity extends AppCompatActivity {
             playerPoints++;
             nextGame();
         } else  {
+            // JUST DO IT
+            // JUST DO IT
+            // JUST DO IT
+            // JUST DO IT 8
 
             switch (currentClickedBtn) {
 
@@ -155,7 +159,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setQuestionUI() {
-
         tv_option_1.setText(questionList.get(currentQuestion).getAnswer1());
         tv_option_2.setText(questionList.get(currentQuestion).getAnswer2());
         tv_option_3.setText(questionList.get(currentQuestion).getAnswer3());
@@ -184,6 +187,10 @@ public class GameActivity extends AppCompatActivity {
                 .getCorrectAnswer().trim())) {
             btn_option_4.setBackgroundResource(R.drawable.btn_bg_certo);
         }
+    }
+
+    private void playerPoints() {
+        playerPoints++;
     }
 
     private String getAnswer() {

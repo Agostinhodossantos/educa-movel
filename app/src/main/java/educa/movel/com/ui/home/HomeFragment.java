@@ -90,7 +90,7 @@ public class HomeFragment extends Fragment {
         tv_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = "agostinho";
+                user =  firebaseAuth.getCurrentUser();
 
                 if (user == null) {
                     Intent intent = new Intent(getContext(), LoginActivity.class);

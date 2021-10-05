@@ -44,12 +44,15 @@ public class VideoActivity extends AppCompatActivity {
     }
 
     private String getUrlID(String url) {
-        int index = url.indexOf("=");
+        int index;
         String id = "";
-        if (index > 0) {
-           id =  url.substring(index + 1, url.length());
+        if (url.contains("embed")) {
+            index = url.indexOf("embed/");
+            id =  url.substring(index + 6, id.indexOf("?"));
+        } else {
+            index = url.indexOf("=");
+            id =  url.substring(index + 1, url.length());
         }
-
         return id;
     }
 

@@ -128,8 +128,11 @@ public class LoginActivity extends AppCompatActivity {
 
 
         if (requestCode == REGISTER_CODE) {
-            User user = (User) data.getSerializableExtra("user");
-            finish();
+            if (data != null) {
+                User user = (User) data.getSerializableExtra("user");
+                finish();
+            }
+
         }
     }
 }
