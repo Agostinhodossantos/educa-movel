@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
@@ -17,27 +19,34 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.shape.CornerFamily;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import educa.movel.com.CodingTutorActivity;
 import educa.movel.com.R;
 import educa.movel.com.databinding.FragmentHomeBinding;
+import educa.movel.com.model.CurrentLocation;
 import educa.movel.com.ui.BooksActivity;
+import educa.movel.com.ui.NewsActivity;
 import educa.movel.com.ui.UserProfileActivity;
 import educa.movel.com.ui.VideoActivity;
 import educa.movel.com.ui.VideosListActivity;
 import educa.movel.com.ui.game.GameActivity;
 import educa.movel.com.ui.login.LoginActivity;
+import educa.movel.com.utils.InitFirebase;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
-    private CardView card_video, card_concourse, card_programing_tutor,card_book;
+    private CardView card_video, card_concourse, card_programing_tutor,card_book, card_news;
     private View root;
     private ShapeableImageView img_background;
     private ShapeableImageView img_background_2;
     private FirebaseUser user;
     private TextView tv_start;
+    private TextView tv_location, tv_time;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,6 +68,14 @@ public class HomeFragment extends Fragment {
         });
 
         initUI();
+
+        card_news.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), NewsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         tv_start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +133,7 @@ public class HomeFragment extends Fragment {
         });
 
         shapeImage();
+        getCurrentLocation();
         return root;
     }
 
@@ -134,7 +152,30 @@ public class HomeFragment extends Fragment {
                 .build());
     }
 
+    private void getCurrentLocation() {
+        InitFirebase.initFirebase()
+                .child("educa_movel")
+                .child("location")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        CurrentLocation location = snapshot.getValue(CurrentLocation.class);
+                        tv_location.setText(location.getLocation());
+                        tv_time.setText(location.getStart()+"H - "+location.getEnd()+"H");
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
     private void initUI() {
+        tv_location = root.findViewById(R.id.tv_location);
+        tv_time = root.findViewById(R.id.tv_time);
+        card_news = root.findViewById(R.id.card_news);
         card_book = root.findViewById(R.id.card_book);
         img_background = root.findViewById(R.id.img_background);
         card_video = root.findViewById(R.id.card_video);

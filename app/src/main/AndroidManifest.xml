@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EducaMovel">
         <activity
+            android:parentActivityName=".ui.NewsActivity"
             android:name=".ui.NewsActivity"
             android:exported="true" />
         <activity

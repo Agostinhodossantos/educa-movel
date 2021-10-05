@@ -118,6 +118,7 @@
                       />
 
                   <TextView
+                      android:id="@+id/tv_location"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:layout_marginTop="6dp"
@@ -133,6 +134,7 @@
                   android:layout_height="match_parent">
 
                   <TextView
+                      android:id="@+id/tv_time"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="10H - 15H"
@@ -339,6 +341,7 @@
 
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_news"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
@@ -378,7 +381,7 @@
                         android:layout_width="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_height="wrap_content"
-                        android:text="Noticias"
+                        android:text="Novidades"
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:layout_marginStart="10dp"
