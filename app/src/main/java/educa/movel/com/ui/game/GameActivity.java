@@ -1,5 +1,6 @@
 package educa.movel.com.ui.game;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -16,6 +17,9 @@ import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.ArrayList;
@@ -25,7 +29,9 @@ import java.util.UUID;
 import educa.movel.com.R;
 import educa.movel.com.model.GameUser;
 import educa.movel.com.model.Question;
+import educa.movel.com.model.User;
 import educa.movel.com.utils.InitFirebase;
+import educa.movel.com.utils.Utils;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -39,7 +45,7 @@ public class GameActivity extends AppCompatActivity {
     private AlertDialog dialog = null;
     private static final int GAME_QUESTION = 20;
     private LottieAnimationView animationView;
-    private FirebaseUser user;
+    private FirebaseUser userAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +58,13 @@ public class GameActivity extends AppCompatActivity {
         window.setStatusBarColor(getResources().getColor(R.color.custom_black));
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        user =  firebaseAuth.getCurrentUser();
+        userAuth =  firebaseAuth.getCurrentUser();
 
         initUI();
         getQuestions();
         setQuestionUI();
 
-
+        getUser();
         btn_option_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,14 +142,57 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    private void createUser() {
-        String userUid = user.getUid();
+    private void createUser(User user) {
+
         String uid = UUID.randomUUID().toString();
-        GameUser user = new GameUser(uid, userUid, "", "", );
+        GameUser userGame = new GameUser(uid, user.getUserId(), "", "", Utils.getDate(), 0);
+
         InitFirebase.initFirebase()
                 .child("educa_movel")
                 .child("user_list")
-                .child(uid)
+                .child(user.getUserId())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (!snapshot.exists()) {
+                            InitFirebase.initFirebase()
+                                    .child("educa_movel")
+                                    .child("user_list")
+                                    .child(uid)
+                                    .setValue(userGame);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+    }
+
+    private void getUser() {
+        String userUid = userAuth.getUid();
+        InitFirebase.initFirebase()
+                .child("users")
+                .child(userUid)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User user = snapshot.getValue(User.class);
+
+                        if (user != null) {
+                            createUser(user);
+                        } else {
+                            Toast.makeText(GameActivity.this, "Erro: usuario nao encotrado", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 
     private void nextGame() {

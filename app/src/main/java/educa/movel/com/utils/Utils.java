@@ -1,5 +1,9 @@
 package educa.movel.com.utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Utils {
    public static String emptyImage = "https://firebasestorage.googleapis.com/v0/b/events-18105.appspot.com/o/empty.jpg?alt=media&token=07e04111-e92b-4433-ab26-b8d91df82a58";
    public static String app_version = "3";
@@ -18,6 +22,13 @@ public class Utils {
 
       }
       return str;
+   }
+
+   public static final String getDate() {
+      Date date = new Date();
+      SimpleDateFormat format  =  new SimpleDateFormat("dd/MM/yyyy");
+      String data = format.format(date);
+      return data;
    }
 
 }
