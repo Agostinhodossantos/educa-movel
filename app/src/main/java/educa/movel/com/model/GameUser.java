@@ -18,6 +18,9 @@ public class GameUser {
         this.score = score;
     }
 
+    public GameUser() {
+    }
+
     public String getUid() {
         return uid;
     }

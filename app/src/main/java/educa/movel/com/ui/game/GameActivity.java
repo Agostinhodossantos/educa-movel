@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 import educa.movel.com.R;
@@ -36,6 +38,7 @@ import educa.movel.com.utils.Utils;
 
 public class GameActivity extends AppCompatActivity {
 
+    private static final long START_TIME_IN_MILLIS = 20000;
     private LinearLayout btn_option_1, btn_option_2, btn_option_3, btn_option_4;
     private TextView tv_option_1, tv_option_2, tv_option_3, tv_option_4;
     private TextView tv_question;
@@ -48,6 +51,11 @@ public class GameActivity extends AppCompatActivity {
     private LottieAnimationView animationView;
     private FirebaseUser userAuth;
     private TextView tv_points, tv_timer;
+
+    private CountDownTimer mCountDownTimer;
+    private boolean mTimerRunning;
+    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +76,8 @@ public class GameActivity extends AppCompatActivity {
         setQuestionUI();
 
         getUser();
+        startTimer();
+
         btn_option_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,7 +116,45 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    private void startTimer() {
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                mTimerRunning = false;
+                endGame();
+            }
+        }.start();
+
+        mTimerRunning = true;
+    }
+
+    private void updateCountDownText() {
+        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+
+        String timeLeftFormated = String.format(Locale.getDefault(), "%02d", seconds);
+        tv_timer.setText(timeLeftFormated);
+    }
+
+    private void pauseTimer() {
+        mCountDownTimer.cancel();
+        mTimerRunning = false;
+    }
+
+    private void resetTimer() {
+        pauseTimer();
+        mTimeLeftInMillis = START_TIME_IN_MILLIS;
+        startTimer();
+       // updateCountDownText();
+    }
+
     private void checkAnswer() {
+        resetTimer();
         disableBtns();
         String correctAnswer = questionList
                 .get(currentQuestion)
@@ -189,7 +237,6 @@ public class GameActivity extends AppCompatActivity {
     private void getUser() {
         String userUid = userAuth.getUid();
 
-        Toast.makeText(GameActivity.this, ""+userUid, Toast.LENGTH_SHORT).show();
         InitFirebase.initFirebase()
                 .child("users")
                 .child(userUid)
@@ -213,6 +260,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void nextGame() {
+
         showTheCorrectAnswer();
         updateUI();
     }
@@ -244,6 +292,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setQuestionUI() {
+
+
         tv_option_1.setText(questionList.get(currentQuestion).getAnswer1());
         tv_option_2.setText(questionList.get(currentQuestion).getAnswer2());
         tv_option_3.setText(questionList.get(currentQuestion).getAnswer3());
