@@ -4,6 +4,7 @@ package educa.movel.com.rv;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,12 +49,18 @@ public class RvExhibitor extends RecyclerView.Adapter<RvExhibitor.MyViewHoder> {
         holder.tvName.setText(Utils.getCutStr(mData.get(position).getInstitution_name(), 50));
         String img1 = mData.get(position).getImg1();
         String img2 = mData.get(position).getImg2();
+        String category = mData.get(position).getCategory();
+
+        int icon = category.equals("2")
+                ? R.drawable.ic_baseline_school_24
+                : R.drawable.ic_baseline_business_center_24;
+        holder.imgProfile.setImageResource(icon);
 
         if (!img1.isEmpty()) {
-            Picasso.get().load(mData.get(position).getImg1()).into(holder.imgProfile);
+           // Picasso.get().load(mData.get(position).getImg1()).into(holder.imgProfile);
             Picasso.get().load(mData.get(position).getImg1()).into(holder.imgBackground);
         } else {
-            Picasso.get().load(Utils.emptyImage).into(holder.imgProfile);
+           // Picasso.get().load(Utils.emptyImage).into(holder.imgProfile);
             Picasso.get().load(Utils.emptyImage).into(holder.imgBackground);
         }
 
