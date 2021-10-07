@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +36,7 @@ import educa.movel.com.R;
 import educa.movel.com.model.GameUser;
 import educa.movel.com.model.Question;
 import educa.movel.com.model.User;
+import educa.movel.com.ui.login.LoginActivity;
 import educa.movel.com.utils.InitFirebase;
 import educa.movel.com.utils.Utils;
 
@@ -73,8 +76,13 @@ public class GameActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         userAuth =  firebaseAuth.getCurrentUser();
 
+        if (userAuth == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+
+        }
+
         initUI();
-        getPoints();
+
         getQuestions();
         setQuestionUI();
 
@@ -208,8 +216,17 @@ public class GameActivity extends AppCompatActivity {
                                     .child("educa_movel")
                                     .child("user_list")
                                     .child(user.getUserId())
-                                    .setValue(userGame);
+                                    .setValue(userGame)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            getPoints();
+                                        }
+                                    });
+                        } else {
+                            getPoints();
                         }
+
                     }
 
                     @Override
@@ -339,6 +356,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void getPoints() {
+
         InitFirebase.initFirebase()
                 .child("educa_movel")
                 .child("user_list")

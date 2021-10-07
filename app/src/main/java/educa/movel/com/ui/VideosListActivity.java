@@ -42,12 +42,11 @@ public class VideosListActivity extends AppCompatActivity {
     }
 
     private void getVideios() {
-       videoList.add(new Video("", "" ,""));
-       videoList.add(new Video("", "" ,""));
-       videoList.add(new Video("", "" ,""));
-       videoList.add(new Video("", "" ,""));
-       videoList.add(new Video("", "" ,""));
-       videoList.add(new Video("", "" ,""));
+        //https://www.youtube.com/watch?v=eNUIvSlEk7E
+       videoList.add(new Video("eNUIvSlEk7E", "" ,""));
+       videoList.add(new Video("eNUIvSlEk7E", "" ,""));
+       videoList.add(new Video("eNUIvSlEk7E", "" ,""));
+       videoList.add(new Video("eNUIvSlEk7E", "" ,""));
     }
 
     private void initUI() {

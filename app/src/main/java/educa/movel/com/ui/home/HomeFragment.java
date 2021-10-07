@@ -123,6 +123,7 @@ public class HomeFragment extends Fragment {
         card_concourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                user =  firebaseAuth.getCurrentUser();
                 if(user == null) {
                     Intent intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
