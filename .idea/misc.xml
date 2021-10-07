@@ -43,6 +43,7 @@
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/activity_news.xml" value="0.123046875" />
+        <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/activity_update_app.xml" value="0.1" />
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/activity_user_profile.xml" value="0.10621584699453553" />
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/activity_video.xml" value="0.18931159420289856" />
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/activity_videos_list.xml" value="0.15" />
@@ -51,10 +52,11 @@
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/bottom_colleges.xml" value="0.13828125" />
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/bottom_courses.xml" value="0.190625" />
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/bottom_description.xml" value="0.1" />
+        <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/dialog_update.xml" value="0.12363387978142076" />
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/end_game.xml" value="0.1721014492753623" />
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/fragment_dashboard.xml" value="0.153125" />
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/fragment_expo.xml" value="0.1" />
-        <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/fragment_home.xml" value="0.106640625" />
+        <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/fragment_home.xml" value="0.14" />
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/fragment_notifications.xml" value="0.1526268115942029" />
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/info_card.xml" value="0.18125" />
         <entry key="..\:/Users/Agostinho/AndroidStudioProjects/Educamovel/app/src/main/res/layout/item_books.xml" value="0.123828125" />

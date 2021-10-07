@@ -1,11 +1,13 @@
 package educa.movel.com.ui.home;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +51,7 @@ public class HomeFragment extends Fragment {
     private ShapeableImageView img_background_2;
     private FirebaseUser user;
     private ImageView img_start;
+    private AlertDialog dialog = null;
     private TextView tv_location, tv_time;
 
 
@@ -211,8 +214,8 @@ public class HomeFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String version = snapshot.getValue(String.class);
 
-                        if (version.equals(Utils.app_version)) {
-                            //FIXME kdkjjkf
+                        if (!version.equals(Utils.app_version)) {
+                            updateApp();
                         }
 
                     }
@@ -222,6 +225,28 @@ public class HomeFragment extends Fragment {
 
                     }
                 });
+    }
+
+    private void updateApp() {
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+        View mView = getLayoutInflater().inflate(R.layout.dialog_update, null);
+
+        Button btn_update = mView.findViewById(R.id.btn_update);
+
+        btn_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Utils.play_store_link));
+                startActivity(browserIntent);
+            }
+        });
+
+
+        mBuilder.setView(mView);
+        dialog = mBuilder.create();
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setCancelable(false);
+        dialog.show();
     }
 
     @Override

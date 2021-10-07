@@ -179,7 +179,7 @@
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/exhibitor2"
+                    android:src="@drawable/quiz"
                     android:orientation="vertical"
                     android:layout_height="match_parent">
                 </com.makeramen.roundedimageview.RoundedImageView>
@@ -233,7 +233,7 @@
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/exhibitor2"
+                    android:src="@drawable/books"
                     android:orientation="vertical"
                     android:layout_height="match_parent">
                 </com.makeramen.roundedimageview.RoundedImageView>
@@ -422,7 +422,7 @@
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/exhibitor2"
+                    android:src="@drawable/coding"
                     android:orientation="vertical"
                     android:layout_height="match_parent">
                 </com.makeramen.roundedimageview.RoundedImageView>
