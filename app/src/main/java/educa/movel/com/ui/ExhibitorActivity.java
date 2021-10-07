@@ -2,7 +2,6 @@ package educa.movel.com.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -13,16 +12,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +51,7 @@ public class ExhibitorActivity extends AppCompatActivity {
     private String uid;
     private List<Course> courseList = new ArrayList<>();
     List<College> collegeList = new ArrayList<>();
+    private LinearLayout ll_college_course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +71,6 @@ public class ExhibitorActivity extends AppCompatActivity {
             if (exhibitor != null) {
                 BottomSheetDescription bottomSheetDescription = new BottomSheetDescription(exhibitor.getInstitution_name(), exhibitor.getInstitution_description() );
                 bottomSheetDescription.show(getSupportFragmentManager(), "bottomsheet");
-            } else {
-
             }
 
         });
@@ -113,21 +111,33 @@ public class ExhibitorActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         exhibitor = snapshot.getValue(Exhibitor.class);
-                        tv_title.setText(exhibitor.getInstitution_name());
-                        tv_description.setText(Utils.getCutStr(exhibitor.getInstitution_description(), 225));
-                        tv_name.setText(exhibitor.getInstitution_name());
-                        tv_call.setText(exhibitor.getPhone());
-                        tv_email.setText(exhibitor.getEmail());
-                        tv_location.setText(exhibitor.getLocation());
+                        if (exhibitor != null) {
+                            tv_title.setText(exhibitor.getInstitution_name());
 
-                        if (!exhibitor.getImg1().isEmpty()) {
-                            Picasso.get().load(exhibitor.getImg1()).into(img_profile);
-                        } else {
+                            tv_description.setText(Utils.getCutStr(exhibitor.getInstitution_description(), 225));
+                            tv_name.setText(exhibitor.getInstitution_name());
+                            tv_call.setText(exhibitor.getPhone());
+                            tv_email.setText(exhibitor.getEmail());
+                            tv_location.setText(exhibitor.getLocation());
 
+                            if (exhibitor.getCategory().equals("1")) {
+                                ll_college_course.setVisibility(View.GONE);
+                            } else {
+                                ll_college_course.setVisibility(View.VISIBLE);
+                            }
+
+                            if (!exhibitor.getImg1().isEmpty()) {
+                                Picasso.get().load(exhibitor.getImg1()).into(img_profile);
+                            } else {
+
+                            }
+
+                            initGallery();
+                            getCourses();
+                            getCollege();
                         }
-                        initGallery();
-                        getCourses();
-                        getCollege();
+
+
 
                     }
 
@@ -240,6 +250,7 @@ public class ExhibitorActivity extends AppCompatActivity {
         btn_courses = findViewById(R.id.btn_courses);
         btn_expand = findViewById(R.id.btn_expand);
         btn_college = findViewById(R.id.btn_college);
+        ll_college_course = findViewById(R.id.ll_college_course);
     }
 }
 

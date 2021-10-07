@@ -37,6 +37,7 @@ import educa.movel.com.ui.VideosListActivity;
 import educa.movel.com.ui.game.GameActivity;
 import educa.movel.com.ui.login.LoginActivity;
 import educa.movel.com.utils.InitFirebase;
+import educa.movel.com.utils.Utils;
 
 public class HomeFragment extends Fragment {
 
@@ -60,6 +61,7 @@ public class HomeFragment extends Fragment {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         user =  firebaseAuth.getCurrentUser();
 
+        checkApplicationVersion();
 
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -196,6 +198,30 @@ public class HomeFragment extends Fragment {
         card_programing_tutor = root.findViewById(R.id.card_programing_tutor);
         img_background_2 = root.findViewById(R.id.img_background_2);
         img_start = root.findViewById(R.id.profile);
+    }
+
+    private void checkApplicationVersion() {
+        InitFirebase initFirebase = new InitFirebase();
+        initFirebase
+                .initFirebase()
+                .child("educa_movel")
+                .child("version")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String version = snapshot.getValue(String.class);
+
+                        if (version.equals(Utils.app_version)) {
+                            //FIXME kdkjjkf
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 
     @Override

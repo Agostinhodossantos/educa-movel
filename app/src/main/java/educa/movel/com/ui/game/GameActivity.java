@@ -429,6 +429,7 @@ public class GameActivity extends AppCompatActivity {
         btn_end_game.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.dismiss();
                 finish();
             }
         });
