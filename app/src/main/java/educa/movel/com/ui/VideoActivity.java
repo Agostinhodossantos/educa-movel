@@ -48,7 +48,7 @@ public class VideoActivity extends AppCompatActivity {
         String id = "";
         if (url.contains("embed")) {
             index = url.indexOf("embed/");
-            id =  url.substring(index + 6, id.indexOf("?"));
+            id =  url.substring(index + 6, url.indexOf("?"));
         } else {
             index = url.indexOf("=");
             id =  url.substring(index + 1, url.length());

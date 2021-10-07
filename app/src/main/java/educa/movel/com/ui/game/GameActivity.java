@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,8 @@ public class GameActivity extends AppCompatActivity {
     private CountDownTimer mCountDownTimer;
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+
+    private Button btn_end_game;
 
 
     @Override
@@ -286,7 +289,7 @@ public class GameActivity extends AppCompatActivity {
                 }
 
             }
-        }, 4000);
+        }, 3000);
 
 
     }
@@ -344,6 +347,7 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         GameUser user = snapshot.getValue(GameUser.class);
+                        playerPoints = user.getScore();
                         tv_points.setText(user.getScore()+"");
                     }
 
@@ -403,10 +407,36 @@ public class GameActivity extends AppCompatActivity {
         final AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View mView = getLayoutInflater().inflate(R.layout.end_game, null);
 
+        btn_end_game = mView.findViewById(R.id.btn_end_game);
+        btn_end_game.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         mBuilder.setView(mView);
         dialog = mBuilder.create();
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setCancelable(false);
         dialog.show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        pauseTimer();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        resetTimer();
     }
 
     private void disableBtns() {
