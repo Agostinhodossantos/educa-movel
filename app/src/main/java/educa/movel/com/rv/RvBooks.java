@@ -47,10 +47,6 @@ public class RvBooks extends RecyclerView.Adapter<RvBooks.MyViewHoder> {
             @Override
             public void onClick(View v) {
                 String url = mData.get(position).getUrl();
-
-                if (!url.startsWith("http://") && !url.startsWith("https://"))
-                    url = "http://" + url;
-                url = "http://docs.google.com/gview?embedded=true&url="+url;
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 mContext.startActivity(browserIntent);
             }

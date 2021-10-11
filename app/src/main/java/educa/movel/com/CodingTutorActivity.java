@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.shape.CornerFamily;
@@ -31,6 +33,7 @@ public class CodingTutorActivity extends AppCompatActivity {
 
     private MaterialCardView cardView;
     private RecyclerView rv_tutor;
+    private ProgressBar progress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +76,7 @@ public class CodingTutorActivity extends AppCompatActivity {
                             TutorVideo tutorVideo = objSnapshot.getValue(TutorVideo.class);
                             videoList.add(tutorVideo);
                         }
-
+                        progress.setVisibility(View.GONE);
                         RvTutor rvNews = new RvTutor(CodingTutorActivity.this, videoList);
                         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL);
                         rv_tutor.setLayoutManager(layoutManager);
@@ -89,6 +92,7 @@ public class CodingTutorActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        progress = findViewById(R.id.progress);
         rv_tutor = findViewById(R.id.rv_tutor);
     }
 }

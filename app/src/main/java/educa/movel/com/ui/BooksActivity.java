@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +30,7 @@ public class BooksActivity extends AppCompatActivity {
 
     private RecyclerView rv_books;
     private List<Book> bookList = new ArrayList<>();
+    private ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +59,10 @@ public class BooksActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        progress = findViewById(R.id.progress);
         rv_books = findViewById(R.id.rv_books);
     }
+
 
     private void initBooks() {
 
@@ -72,7 +77,7 @@ public class BooksActivity extends AppCompatActivity {
                             Book book = objSnapshot.getValue(Book.class);
                             bookList.add(book);
                         }
-
+                        progress.setVisibility(View.GONE);
                         RvBooks rvNews = new RvBooks(BooksActivity.this, bookList);
                         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL);
                         rv_books.setLayoutManager(layoutManager);

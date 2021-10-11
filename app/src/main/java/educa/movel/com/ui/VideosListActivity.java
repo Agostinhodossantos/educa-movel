@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +30,7 @@ public class VideosListActivity extends AppCompatActivity implements Utils.AddLi
 
     private RecyclerView rv_videos;
     private List<Video> videoList = new ArrayList<>();
+    private ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class VideosListActivity extends AppCompatActivity implements Utils.AddLi
     protected void onStart() {
         super.onStart();
         initUI();
+        progress.setVisibility(View.VISIBLE);
         setVideoList();
     }
 
@@ -61,6 +65,7 @@ public class VideosListActivity extends AppCompatActivity implements Utils.AddLi
                             Video video = objSnapshot.getValue(Video.class);
                             videoList.add(video);
                         }
+                        progress.setVisibility(View.GONE);
                         RvVideos adapter = new RvVideos(VideosListActivity.this , videoList, getLifecycle());
                         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1 , LinearLayoutManager.VERTICAL);
                         rv_videos.setLayoutManager(layoutManager);
@@ -102,5 +107,6 @@ public class VideosListActivity extends AppCompatActivity implements Utils.AddLi
 
     private void initUI() {
         rv_videos = findViewById(R.id.rv_videos);
+        progress = findViewById(R.id.progress);
     }
 }
