@@ -12,6 +12,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import educa.movel.com.R;
+import educa.movel.com.utils.CheckField;
 
 public class VideoActivity extends AppCompatActivity {
 
@@ -27,7 +28,9 @@ public class VideoActivity extends AppCompatActivity {
         YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
 
-        if (!url.isEmpty()) {
+        CheckField field = new CheckField();
+
+        if (!field.isEmpty(url)) {
             youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
                 @Override
                 public void onReady(@NonNull YouTubePlayer youTubePlayer) {

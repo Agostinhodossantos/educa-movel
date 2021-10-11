@@ -1,5 +1,6 @@
 package educa.movel.com;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +14,9 @@ import android.view.WindowManager;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.shape.CornerFamily;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,12 +44,13 @@ public class CodingTutorActivity extends AppCompatActivity {
 
         initUI();
         initRv();
-        setVideos();
+
     }
 
     private void setVideos() {
-        TutorVideo tutorVideo = new TutorVideo("url", "thumbnail", UUID.randomUUID().toString(), "title", "tag");
+
         for (int i = 0; i < 5; i++) {
+            TutorVideo tutorVideo = new TutorVideo("url", "thumbnail", UUID.randomUUID().toString(), "title", "tag");
             InitFirebase.initFirebase()
                     .child("educa_movel")
                     .child("coding_tutor")
@@ -57,16 +62,30 @@ public class CodingTutorActivity extends AppCompatActivity {
 
     private void initRv() {
         List<TutorVideo> videoList = new ArrayList<>();
-        videoList.add(new TutorVideo("url", "thumb", "uid", "Android", "Android"));
-        videoList.add(new TutorVideo("url", "thumb", "uid", "Android", "Android"));
-        videoList.add(new TutorVideo("url", "thumb", "uid", "Android", "Android"));
-        videoList.add(new TutorVideo("url", "thumb", "uid", "Android", "Android"));
-        videoList.add(new TutorVideo("url", "thumb", "uid", "Android", "Android"));
-        videoList.add(new TutorVideo("url", "thumb", "uid", "Android", "Android"));
-        RvTutor rvNews = new RvTutor(CodingTutorActivity.this, videoList);
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL);
-        rv_tutor.setLayoutManager(layoutManager);
-        rv_tutor.setAdapter(rvNews);
+
+        InitFirebase.initFirebase()
+                .child("educa_movel")
+                .child("coding_tutor")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot objSnapshot: snapshot.getChildren()) {
+                            TutorVideo tutorVideo = objSnapshot.getValue(TutorVideo.class);
+                            videoList.add(tutorVideo);
+                        }
+
+                        RvTutor rvNews = new RvTutor(CodingTutorActivity.this, videoList);
+                        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL);
+                        rv_tutor.setLayoutManager(layoutManager);
+                        rv_tutor.setAdapter(rvNews);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
     }
 
     private void initUI() {

@@ -45,7 +45,7 @@ public class RvTutor extends RecyclerView.Adapter<RvTutor.MyViewHoder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, VideoActivity.class);
-                intent.putExtra("url", "https://www.youtube.com/watch?v=Ejkb_YpuHWs&list");
+                intent.putExtra("url", mData.get(position).getUrl());
                 mContext.startActivity(intent);
             }
         });

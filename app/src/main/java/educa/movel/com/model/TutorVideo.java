@@ -8,6 +8,10 @@ public class TutorVideo extends Video{
         this.tag = tag;
     }
 
+    public TutorVideo() {
+
+    }
+
     public TutorVideo(String tag) {
         this.tag = tag;
     }
