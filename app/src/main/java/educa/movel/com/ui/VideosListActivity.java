@@ -43,10 +43,10 @@ public class VideosListActivity extends AppCompatActivity {
 
     private void getVideios() {
         //https://www.youtube.com/watch?v=eNUIvSlEk7E
-       videoList.add(new Video("eNUIvSlEk7E", "" ,""));
-       videoList.add(new Video("eNUIvSlEk7E", "" ,""));
-       videoList.add(new Video("eNUIvSlEk7E", "" ,""));
-       videoList.add(new Video("eNUIvSlEk7E", "" ,""));
+       videoList.add(new Video("eNUIvSlEk7E", "" ,"", "Titulod do video aqui"));
+       videoList.add(new Video("eNUIvSlEk7E", "" ,"", "Titulod do video aqui"));
+       videoList.add(new Video("eNUIvSlEk7E", "" ,"", "Titulod do video aqui"));
+       videoList.add(new Video("eNUIvSlEk7E", "" ,"", "Titulod do video aqui"));
     }
 
     private void initUI() {

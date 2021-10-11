@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -48,6 +49,9 @@ public class RvTutor extends RecyclerView.Adapter<RvTutor.MyViewHoder> {
                 mContext.startActivity(intent);
             }
         });
+
+        holder.tv_coding_title.setText(mData.get(position).getTitle());
+        holder.tv_subject.setText(mData.get(position).getTag());
     }
 
     @Override
@@ -58,9 +62,13 @@ public class RvTutor extends RecyclerView.Adapter<RvTutor.MyViewHoder> {
     public static class MyViewHoder extends RecyclerView.ViewHolder{
 
         private CardView card_tutor;
+        private TextView tv_coding_title;
+        private TextView tv_subject;
         public MyViewHoder(@NonNull View itemView) {
             super(itemView);
             card_tutor = itemView.findViewById(R.id.card_tutor);
+            tv_coding_title = itemView.findViewById(R.id.tv_coding_title);
+            tv_subject = itemView.findViewById(R.id.tv_subject);
         }
     }
 }

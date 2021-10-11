@@ -1,12 +1,13 @@
 package educa.movel.com.model;
 
 public class Video {
-    private String url, thumbnail, uid;
+    private String url, thumbnail, uid, title;
 
-    public Video(String url, String thumbnail, String uid) {
+    public Video(String url, String thumbnail, String uid, String title) {
         this.url = url;
         this.thumbnail = thumbnail;
         this.uid = uid;
+        this.title = title;
     }
 
     public Video() {
@@ -34,5 +35,13 @@ public class Video {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
