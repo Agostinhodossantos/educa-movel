@@ -61,7 +61,7 @@ public class VideosListActivity extends AppCompatActivity implements Utils.AddLi
                             Video video = objSnapshot.getValue(Video.class);
                             videoList.add(video);
                         }
-                        RvVideos adapter = new RvVideos(VideosListActivity.this , videoList);
+                        RvVideos adapter = new RvVideos(VideosListActivity.this , videoList, getLifecycle());
                         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1 , LinearLayoutManager.VERTICAL);
                         rv_videos.setLayoutManager(layoutManager);
                         rv_videos.setAdapter(adapter);
