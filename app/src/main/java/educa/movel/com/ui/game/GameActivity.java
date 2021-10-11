@@ -225,7 +225,7 @@ public class GameActivity extends AppCompatActivity {
                                         }
                                     });
                         } else {
-                            endGame(true);
+                           //todo remove this comments endGame(true);
                             pauseTimer();
                             getPoints();
                         }
@@ -412,7 +412,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         initUI();
-        getQuestions();
+
     }
 
     private void getQuestions() {
@@ -444,16 +444,16 @@ public class GameActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < list.length; i++) {
-
+            Toast.makeText(GameActivity.this, ""+list[i]+" -  "+list[list.length - 1 ], Toast.LENGTH_SHORT).show();
             switch (list[i]) {
                 case 0:
-                    getCultureQuestions(list[i] == list[list.length] - 1);
+                    getCultureQuestions(list[i] == list[list.length - 1]);
                 case 1:
-                    getHistoryQuestions(list[i] == list[list.length] - 1);
+                    getHistoryQuestions(list[i] == list[list.length - 1]);
                 case 2:
-                    getOtherQuestions(list[i] == list[list.length] - 1);
+                    getOtherQuestions(list[i] == list[list.length - 1]);
                 case 3:
-                    getTechQuestions(list[i] == list[list.length] - 1);
+                    getTechQuestions(list[i] == list[list.length - 1]);
 
             }
         }
