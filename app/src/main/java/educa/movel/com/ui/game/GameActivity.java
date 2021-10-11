@@ -30,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.UUID;
 
 import educa.movel.com.R;
@@ -84,7 +85,7 @@ public class GameActivity extends AppCompatActivity {
         initUI();
 
         getQuestions();
-        setQuestionUI();
+
 
         getUser();
         startTimer();
@@ -415,18 +416,153 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void getQuestions() {
+        Random random = new Random();
+        int rand = random.nextInt(3);
+        int list0[] ={0,1,2,3};
+        int list1[] ={3,2,1,0};
+        int list2[] ={2,3,0,1};
+        int list3[] ={1,2,0,3};
+        int list[];
+
+        switch (rand) {
+            case 0:
+                list = list0;
+                break;
+            case 1:
+                list = list1;
+                break;
+            case 2:
+                list = list2;
+                break;
+            case 3:
+                list = list3;
+                break;
+            default:
+                list = list0;
+                break;
+
+        }
+
+        for (int i = 0; i < list.length; i++) {
+
+            switch (list[i]) {
+                case 0:
+                    getCultureQuestions(list[i] == list[list.length] - 1);
+                case 1:
+                    getHistoryQuestions(list[i] == list[list.length] - 1);
+                case 2:
+                    getOtherQuestions(list[i] == list[list.length] - 1);
+                case 3:
+                    getTechQuestions(list[i] == list[list.length] - 1);
+
+            }
+        }
+
+
+
+        //questionList.add(new Question("5 + 5", "4", "2", "6", "10", "10"));
+        //questionList.add(new Question("2 + 2", "4", "2", "6", "8", "4"));
+    }
+
+
+    private void getTechQuestions(Boolean isEnd) {
 
         InitFirebase.initFirebase()
                 .child("educa_movel")
-                .child("")
                 .child("quiz")
-                .child("")
+                .child("tech")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot objSnapshot1: snapshot.getChildren()) {
+                            Question question = objSnapshot1.getValue(Question.class);
+                            questionList.add(question);
+                        }
+                        if (isEnd) {
+                            setQuestionUI();
+                        }
+                    }
 
-        questionList.add(new
-                Question("2 + 2", "4", "2", "6", "8", "4"));
-        questionList.add(new Question("3 + 2", "4", "5", "6", "8", "5"));
-        questionList.add(new Question("5 + 5", "4", "2", "6", "10", "10"));
-        questionList.add(new Question("2 + 2", "4", "2", "6", "8", "4"));
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+    }
+
+    private void getOtherQuestions(Boolean isEnd) {
+
+        InitFirebase.initFirebase()
+                .child("educa_movel")
+                .child("quiz")
+                .child("other")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot objSnapshot1: snapshot.getChildren()) {
+                            Question question = objSnapshot1.getValue(Question.class);
+                            questionList.add(question);
+                        }
+                        if (isEnd) {
+                            setQuestionUI();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+    }
+
+    private void getHistoryQuestions(Boolean isEnd) {
+        InitFirebase.initFirebase()
+                .child("educa_movel")
+                .child("quiz")
+                .child("history")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot objSnapshot1: snapshot.getChildren()) {
+                            Question question = objSnapshot1.getValue(Question.class);
+                            questionList.add(question);
+                        }
+                        if (isEnd) {
+                            setQuestionUI();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    private void getCultureQuestions(Boolean isEnd) {
+        InitFirebase.initFirebase()
+                .child("educa_movel")
+                .child("quiz")
+                .child("culture")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot objSnapshot1: snapshot.getChildren()) {
+                            Question question = objSnapshot1.getValue(Question.class);
+                            questionList.add(question);
+                        }
+                        if (isEnd) {
+                            setQuestionUI();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 
     private void endGame(Boolean isFinal) {
