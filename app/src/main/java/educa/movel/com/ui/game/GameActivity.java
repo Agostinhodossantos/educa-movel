@@ -138,7 +138,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 mTimerRunning = false;
-                endGame();
+                endGame(false);
             }
         }.start();
 
@@ -224,6 +224,8 @@ public class GameActivity extends AppCompatActivity {
                                         }
                                     });
                         } else {
+                            endGame(true);
+                            pauseTimer();
                             getPoints();
                         }
 
@@ -299,7 +301,7 @@ public class GameActivity extends AppCompatActivity {
                 animationView.setVisibility(View.GONE);
 
                 if (currentQuestion > questionList.size() - 1 || currentQuestion == 21) {
-                    endGame();
+                    endGame(false);
                 } else {
                     setQuestionUI();
                     enableBtns();
@@ -414,6 +416,12 @@ public class GameActivity extends AppCompatActivity {
 
     private void getQuestions() {
 
+        InitFirebase.initFirebase()
+                .child("educa_movel")
+                .child("")
+                .child("quiz")
+                .child("")
+
         questionList.add(new
                 Question("2 + 2", "4", "2", "6", "8", "4"));
         questionList.add(new Question("3 + 2", "4", "5", "6", "8", "5"));
@@ -421,9 +429,14 @@ public class GameActivity extends AppCompatActivity {
         questionList.add(new Question("2 + 2", "4", "2", "6", "8", "4"));
     }
 
-    private void endGame() {
+    private void endGame(Boolean isFinal) {
         final AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View mView = getLayoutInflater().inflate(R.layout.end_game, null);
+        TextView tv_message = mView.findViewById(R.id.tv_message);
+
+        if (isFinal) {
+            tv_message.setVisibility(View.VISIBLE);
+        }
 
         btn_end_game = mView.findViewById(R.id.btn_end_game);
         btn_end_game.setOnClickListener(new View.OnClickListener() {

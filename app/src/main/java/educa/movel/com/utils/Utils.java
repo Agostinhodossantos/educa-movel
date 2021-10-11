@@ -11,6 +11,7 @@ public class Utils {
    public static String app_version = "1.1.2";
    public static String play_store_link = "https://play.google.com/store/apps/details?id=educa.movel.com";
    public static final int REGISTER_CODE = 20;
+   public static final String api_url = "https://api-educa-movel.herokuapp.com/quiz";
 
 
    public static String getCutStr(String str , int position) {
