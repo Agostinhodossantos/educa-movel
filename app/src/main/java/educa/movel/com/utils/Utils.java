@@ -1,5 +1,7 @@
 package educa.movel.com.utils;
 
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -30,6 +32,10 @@ public class Utils {
       SimpleDateFormat format  =  new SimpleDateFormat("dd/MM/yyyy");
       String data = format.format(date);
       return data;
+   }
+
+   public interface AddLifecycleCallbackListener {
+      void addLifeCycleCallBack(YouTubePlayerView youTubePlayerView);
    }
 
 }
