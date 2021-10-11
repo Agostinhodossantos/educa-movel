@@ -33,7 +33,7 @@ public class CodingTutorActivity extends AppCompatActivity {
         Window window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(getResources().getColor(R.color.purple_500));
+        window.setStatusBarColor(getResources().getColor(R.color.blue));
 
 
         initUI();

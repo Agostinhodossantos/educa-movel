@@ -18,7 +18,7 @@
         android:id="@+id/animationView"
         android:layout_width="match_parent"
         android:layout_height="260dp"
-        android:background="@color/purple_500"
+        android:background="@color/blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
