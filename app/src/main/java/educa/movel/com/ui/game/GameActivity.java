@@ -179,7 +179,8 @@ public class GameActivity extends AppCompatActivity {
             playerPoints();
             nextGame();
         } else  {
-            decreasePoints();
+
+
             switch (currentClickedBtn) {
 
                 case 1:
@@ -196,7 +197,10 @@ public class GameActivity extends AppCompatActivity {
                     break;
             }
 
+            decreasePoints();
             nextGame();
+
+
         }
 
     }
@@ -302,7 +306,8 @@ public class GameActivity extends AppCompatActivity {
                 currentQuestion++;
                 animationView.setVisibility(View.GONE);
 
-                if (currentQuestion > questionList.size() - 1 || currentQuestion == 21) {
+                if (currentQuestion == questionList.size() - 1 || currentQuestion == 20) {
+                    Toast.makeText(GameActivity.this, "End", Toast.LENGTH_SHORT).show();
                     endGame(false);
                 } else {
                     setQuestionUI();
@@ -361,13 +366,19 @@ public class GameActivity extends AppCompatActivity {
 
     private void decreasePoints() {
         playerPoints--;
-        tv_points.setText(playerPoints+"");
-        InitFirebase.initFirebase()
-                .child("educa_movel")
-                .child("user_list")
-                .child(userAuth.getUid())
-                .child("score")
-                .setValue(playerPoints);
+
+        if (playerPoints < 0) {
+            endGame(false);
+        } else {
+            tv_points.setText(playerPoints+"");
+            InitFirebase.initFirebase()
+                    .child("educa_movel")
+                    .child("user_list")
+                    .child(userAuth.getUid())
+                    .child("score")
+                    .setValue(playerPoints);
+        }
+
     }
 
     private void getPoints() {
@@ -578,6 +589,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void endGame(Boolean isFinal) {
+        pauseTimer();
         final AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View mView = getLayoutInflater().inflate(R.layout.end_game, null);
         TextView tv_message = mView.findViewById(R.id.tv_message);
