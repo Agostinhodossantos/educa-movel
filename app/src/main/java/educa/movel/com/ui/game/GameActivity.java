@@ -179,6 +179,7 @@ public class GameActivity extends AppCompatActivity {
             playerPoints();
             nextGame();
         } else  {
+            decreasePoints();
             switch (currentClickedBtn) {
 
                 case 1:
@@ -326,22 +327,22 @@ public class GameActivity extends AppCompatActivity {
 
     private void showTheCorrectAnswer() {
 
-        if (tv_option_1.getText().toString().trim().equalsIgnoreCase(questionList.get(currentQuestion)
+        if ("answer1".equalsIgnoreCase(questionList.get(currentQuestion)
                 .getCorrectAnswer().trim())) {
             btn_option_1.setBackgroundResource(R.drawable.btn_bg_certo);
         }
 
-        if (tv_option_2.getText().toString().trim().equalsIgnoreCase(questionList.get(currentQuestion)
+        if ("answer2".equalsIgnoreCase(questionList.get(currentQuestion)
                 .getCorrectAnswer().trim())) {
             btn_option_2.setBackgroundResource(R.drawable.btn_bg_certo);
         }
 
-        if (tv_option_3.getText().toString().trim().equalsIgnoreCase(questionList.get(currentQuestion)
+        if ("answer3".equalsIgnoreCase(questionList.get(currentQuestion)
                 .getCorrectAnswer().trim())) {
             btn_option_3.setBackgroundResource(R.drawable.btn_bg_certo);
         }
 
-        if (tv_option_4.getText().toString().trim().equalsIgnoreCase(questionList.get(currentQuestion)
+        if ("answer4".equalsIgnoreCase(questionList.get(currentQuestion)
                 .getCorrectAnswer().trim())) {
             btn_option_4.setBackgroundResource(R.drawable.btn_bg_certo);
         }
@@ -349,6 +350,17 @@ public class GameActivity extends AppCompatActivity {
 
     private void playerPoints() {
         playerPoints++;
+        tv_points.setText(playerPoints+"");
+        InitFirebase.initFirebase()
+                .child("educa_movel")
+                .child("user_list")
+                .child(userAuth.getUid())
+                .child("score")
+                .setValue(playerPoints);
+    }
+
+    private void decreasePoints() {
+        playerPoints--;
         tv_points.setText(playerPoints+"");
         InitFirebase.initFirebase()
                 .child("educa_movel")
