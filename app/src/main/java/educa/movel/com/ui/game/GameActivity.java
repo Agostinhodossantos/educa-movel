@@ -383,16 +383,16 @@ public class GameActivity extends AppCompatActivity {
         String answer = "";
         switch (currentClickedBtn) {
             case 1:
-                answer = tv_option_1.getText().toString().trim().toLowerCase();
+                answer = "answer1";
                 break;
             case 2:
-                answer = tv_option_2.getText().toString().trim().toLowerCase();
+                answer = "answer2";
                 break;
             case 3:
-                answer = tv_option_3.getText().toString().trim().toLowerCase();
+                answer = "answer3";
                 break;
             case 4:
-                answer = tv_option_4.getText().toString().trim().toLowerCase();
+                answer = "answer4";
                 break;
             default:
                 break;
