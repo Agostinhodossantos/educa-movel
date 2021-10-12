@@ -19,9 +19,6 @@
             android:name=".ui.GamePlayedActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.BookViewActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.UpdateAppActivity"
             android:exported="true" />
         <activity

@@ -215,7 +215,7 @@ public class HomeFragment extends Fragment {
                         String version = snapshot.getValue(String.class);
 
                         if (!version.equals(Utils.app_version)) {
-                            updateApp();
+//     TODO                       updateApp();
                         }
 
                     }

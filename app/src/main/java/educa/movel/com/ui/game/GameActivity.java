@@ -307,7 +307,6 @@ public class GameActivity extends AppCompatActivity {
                 animationView.setVisibility(View.GONE);
 
                 if (currentQuestion == questionList.size() - 1 || currentQuestion == 20) {
-                    Toast.makeText(GameActivity.this, "End", Toast.LENGTH_SHORT).show();
                     endGame(false);
                 } else {
                     setQuestionUI();
