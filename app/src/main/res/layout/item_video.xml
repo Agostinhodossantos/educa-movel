@@ -21,7 +21,7 @@
             app:videoId="eNUIvSlEk7E"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:showFullScreenButton="false"
+            app:showFullScreenButton="true"
             />
 
         <Space

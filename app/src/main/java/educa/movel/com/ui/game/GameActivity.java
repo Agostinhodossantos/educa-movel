@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -99,6 +101,7 @@ public class GameActivity extends AppCompatActivity {
         });
 
 
+
         btn_option_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,6 +130,17 @@ public class GameActivity extends AppCompatActivity {
 
 
     }
+//
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        Toast.makeText(GameActivity.this, ""+keyCode, Toast.LENGTH_SHORT).show();
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            finish();
+//            Toast.makeText(GameActivity.this, "Hello", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
 
     private void startTimer() {
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
@@ -230,7 +244,7 @@ public class GameActivity extends AppCompatActivity {
                                         }
                                     });
                         } else {
-                           //todo remove this comments endGame(true);
+                            endGame(true);
                             pauseTimer();
                             getPoints();
                         }
@@ -466,8 +480,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < list.length; i++) {
-            Toast.makeText(GameActivity.this, ""+list[i]+" -  "+list[list.length - 1 ], Toast.LENGTH_SHORT).show();
-            switch (list[i]) {
+           switch (list[i]) {
                 case 0:
                     getCultureQuestions(list[i] == list[list.length - 1]);
                 case 1:
@@ -485,6 +498,7 @@ public class GameActivity extends AppCompatActivity {
         //questionList.add(new Question("5 + 5", "4", "2", "6", "10", "10"));
         //questionList.add(new Question("2 + 2", "4", "2", "6", "8", "4"));
     }
+
 
 
     private void getTechQuestions(Boolean isEnd) {
@@ -597,6 +611,8 @@ public class GameActivity extends AppCompatActivity {
             tv_message.setVisibility(View.VISIBLE);
         }
 
+
+
         btn_end_game = mView.findViewById(R.id.btn_end_game);
         btn_end_game.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -606,11 +622,22 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
+
+
         mBuilder.setView(mView);
         dialog = mBuilder.create();
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.show();
+
+        dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                dialog.dismiss();
+                finish();
+                return false;
+            }
+        });
     }
 
     @Override

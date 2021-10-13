@@ -37,6 +37,7 @@ public class VideoActivity extends AppCompatActivity {
                 @Override
                 public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                     String videoId = getUrlID(url);
+                    Toast.makeText(VideoActivity.this, ""+videoId, Toast.LENGTH_SHORT).show();
                     youTubePlayer.loadVideo(videoId, 0);
                 }
             });
@@ -47,6 +48,8 @@ public class VideoActivity extends AppCompatActivity {
         
 
     }
+
+
 
     private String getUrlID(String url) {
         int index;
