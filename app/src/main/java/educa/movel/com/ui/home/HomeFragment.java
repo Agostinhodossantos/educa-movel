@@ -1,9 +1,11 @@
 package educa.movel.com.ui.home;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -215,7 +217,7 @@ public class HomeFragment extends Fragment {
                         String version = snapshot.getValue(String.class);
 
                         if (!version.equals(Utils.app_version)) {
-//     TODO                       updateApp();
+                            updateApp();
                         }
 
                     }
@@ -245,8 +247,8 @@ public class HomeFragment extends Fragment {
         mBuilder.setView(mView);
         dialog = mBuilder.create();
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        dialog.setCancelable(false);
         dialog.show();
+
     }
 
     @Override
