@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -30,6 +31,7 @@ public class EducaplusFragment extends Fragment {
     private EducaplusViewModel educaplusViewModel;
     private FragmentNotificationsBinding binding;
     private RecyclerView rv_news;
+    private ProgressBar progress;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class EducaplusFragment extends Fragment {
                             News news = objSnapshot.getValue(News.class);
                             newsList.add(news);
                         }
+                        progress.setVisibility(View.GONE);
                         RvNews rvNews = new RvNews(getContext(), newsList);
                         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL);
                         rv_news.setLayoutManager(layoutManager);
@@ -74,6 +77,7 @@ public class EducaplusFragment extends Fragment {
     }
 
     private void initUI(View root) {
+        progress = root.findViewById(R.id.progress);
         rv_news = root.findViewById(R.id.rv_news);
     }
 

@@ -54,25 +54,7 @@ public class RvVideos extends RecyclerView.Adapter<RvVideos.MyViewHoder> {
     @Override
     public void onBindViewHolder(@NonNull final MyViewHoder holder, final int position) {
         holder.tv_title.setText(mData.get(position).getTitle());
-        YouTubePlayerView playerView = holder.playerView;
 
-
-        lifecycle.addObserver(playerView);
-        playerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-            @Override
-            public void onVideoId(@NonNull YouTubePlayer youTubePlayer, @NonNull String videoId) {
-                super.onVideoId(youTubePlayer, mData.get(position).getUrl());
-            }
-        });
-
-//        ((VideosListActivity) mContext).getLifecycle().addObserver(playerView);
-//        playerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-//            @Override
-//            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-//                youTubePlayer.loadVideo(mData.get(position).getUrl(), 0);
-//                Toast.makeText(mContext, "heuu"+mData.get(position).toString(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     @Override
@@ -83,12 +65,11 @@ public class RvVideos extends RecyclerView.Adapter<RvVideos.MyViewHoder> {
     public static class MyViewHoder extends RecyclerView.ViewHolder{
 
         private TextView tv_title;
-        private YouTubePlayerView playerView;
 
         public MyViewHoder(@NonNull View itemView) {
             super(itemView);
             tv_title = itemView.findViewById(R.id.tv_title);
-            playerView = itemView.findViewById(R.id.youtube_player_view);
+
 
         }
     }

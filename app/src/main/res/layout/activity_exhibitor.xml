@@ -88,7 +88,7 @@
                                 android:layout_marginTop="10dp"
                                 android:gravity="center"
                                 android:maxWidth="250dp"
-                                android:text="Exhibitor name here"
+                                android:text="Carregando"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
                             <RelativeLayout
@@ -104,7 +104,7 @@
                                     android:layout_marginEnd="10dp"
                                     android:layout_marginBottom="50dp"
                                     android:gravity="center"
-                                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" />
+                                    android:text="" />
 
                             </RelativeLayout>
 
@@ -178,7 +178,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="Exhibitor name here"/>
+                                android:text=""/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -213,7 +213,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="+258 number here"/>
+                                android:text=""/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -277,13 +277,14 @@
                                 android:layout_height="wrap_content"
                                 android:text="Localização"/>
 
+
                             <TextView
                                 android:id="@+id/tv_location"
                                 android:textAppearance="@style/TextAppearance.AppCompat"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="Moçambique, Maputo"/>
+                                android:text=""/>
                         </LinearLayout>
                     </LinearLayout>
 
