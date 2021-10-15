@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.Lifecycle;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +29,7 @@ import educa.movel.com.R;
 import educa.movel.com.model.Image;
 import educa.movel.com.model.Video;
 import educa.movel.com.ui.ImagesFullScreen;
+import educa.movel.com.ui.VIdeoPlayerActivity;
 import educa.movel.com.ui.VideosListActivity;
 
 
@@ -54,6 +56,14 @@ public class RvVideos extends RecyclerView.Adapter<RvVideos.MyViewHoder> {
     @Override
     public void onBindViewHolder(@NonNull final MyViewHoder holder, final int position) {
         holder.tv_title.setText(mData.get(position).getTitle());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, VIdeoPlayerActivity.class);
+                intent.putExtra("url", mData.get(position).getUrl());
+                mContext.startActivity(intent);
+            }
+        });
 
     }
 
@@ -65,10 +75,12 @@ public class RvVideos extends RecyclerView.Adapter<RvVideos.MyViewHoder> {
     public static class MyViewHoder extends RecyclerView.ViewHolder{
 
         private TextView tv_title;
+        private CardView cardView;
 
         public MyViewHoder(@NonNull View itemView) {
             super(itemView);
             tv_title = itemView.findViewById(R.id.tv_title);
+            cardView = itemView.findViewById(R.id.card_video);
 
 
         }

@@ -20,6 +20,7 @@ public class VIdeoPlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_player);
         videoView = findViewById(R.id.videoView);
+        getIntentValues();
 
         videoView.setVideoURI(Uri.parse(url));
         videoView.setMediaController(new MediaController(this));
