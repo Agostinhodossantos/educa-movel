@@ -44,6 +44,7 @@ public class VideosListActivity extends AppCompatActivity implements Utils.AddLi
         initUI();
         progress.setVisibility(View.VISIBLE);
         setVideoList();
+
     }
 
 
@@ -83,7 +84,7 @@ public class VideosListActivity extends AppCompatActivity implements Utils.AddLi
 
     private void setVideo() {
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 2; i++) {
             Video video = new Video("url","thumbnail", UUID.randomUUID().toString(), "title");
 
             InitFirebase.initFirebase()

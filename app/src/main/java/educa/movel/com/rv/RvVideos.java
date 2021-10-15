@@ -80,7 +80,7 @@ public class RvVideos extends RecyclerView.Adapter<RvVideos.MyViewHoder> {
         public MyViewHoder(@NonNull View itemView) {
             super(itemView);
             tv_title = itemView.findViewById(R.id.tv_title);
-            cardView = itemView.findViewById(R.id.card_video);
+            cardView = itemView.findViewById(R.id.video_card);
 
 
         }
