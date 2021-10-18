@@ -64,6 +64,7 @@ public class GameActivity extends AppCompatActivity {
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
 
     private Button btn_end_game;
+    FirebaseAuth firebaseAuth;
 
 
     @Override
@@ -76,7 +77,7 @@ public class GameActivity extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(getResources().getColor(R.color.custom_black));
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         userAuth =  firebaseAuth.getCurrentUser();
 
         if (userAuth == null) {
@@ -617,6 +618,7 @@ public class GameActivity extends AppCompatActivity {
         btn_end_game.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                firebaseAuth.signOut();
                 dialog.dismiss();
                 finish();
             }

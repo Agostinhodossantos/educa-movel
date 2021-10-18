@@ -14,7 +14,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="230dp">
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/vp_ads"
@@ -30,7 +30,7 @@
                 app:ci_drawable="@drawable/bg_dot"
                 app:ci_height="6dp"
                 app:ci_width="6dp"
-                android:layout_margin="5dp"
+                android:layout_margin="9dp"
                 android:layout_height="40dp"/>
         </RelativeLayout>
 

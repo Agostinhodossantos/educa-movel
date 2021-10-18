@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,6 +66,15 @@ public class RvVideos extends RecyclerView.Adapter<RvVideos.MyViewHoder> {
                 mContext.startActivity(intent);
             }
         });
+
+        holder.imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, VIdeoPlayerActivity.class);
+                intent.putExtra("url", mData.get(position).getUrl());
+                mContext.startActivity(intent);
+            }
+        });
         String img = mData.get(position).getThumbnail();
         if (img != null && !img.equals("")) {
             Picasso.get().load(img).into(holder.img_background);
@@ -82,12 +92,14 @@ public class RvVideos extends RecyclerView.Adapter<RvVideos.MyViewHoder> {
         private TextView tv_title;
         private CardView cardView;
         private ImageView img_background;
+        private ImageButton imageButton;
 
         public MyViewHoder(@NonNull View itemView) {
             super(itemView);
             tv_title = itemView.findViewById(R.id.tv_title);
             cardView = itemView.findViewById(R.id.video_card);
             img_background = itemView.findViewById(R.id.img_background);
+            imageButton = itemView.findViewById(R.id.btn_play);
         }
     }
 }
